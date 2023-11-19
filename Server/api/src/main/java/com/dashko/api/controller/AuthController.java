@@ -7,6 +7,11 @@ import com.dashko.api.mapping.PersonMapper;
 import com.dashko.api.security.SecurityService;
 import com.dashko.common.models.Person;
 import com.dashko.common.service.person.PersonService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -27,6 +32,20 @@ public class AuthController {
     PersonMapper personMapper;
 
 
+
+    @Operation(
+            summary = "Login person",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Created",
+                            content = {
+                                    @Content(
+                                            mediaType = "application/json",
+                                            array = @ArraySchema(schema = @Schema(implementation = AuthResponseDTO.class)))
+                            })
+            }
+    )
     @PostMapping("/login")
     public ResponseEntity<AuthResponseDTO> login(@RequestBody AuthRequestDTO dto) {
         AuthResponseDTO authResponseDTO = new AuthResponseDTO();
@@ -36,6 +55,20 @@ public class AuthController {
                 .build());
     }
 
+
+    @Operation(
+            summary = "Register person",
+            responses = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "Created",
+                            content = {
+                                    @Content(
+                                            mediaType = "application/json",
+                                            array = @ArraySchema(schema = @Schema(implementation = PersonCreateDTO.class)))
+                            })
+            }
+    )
     @PostMapping("/register")
     public PersonCreateDTO register(@RequestBody PersonCreateDTO dto) {
         Person entity = personMapper.map(dto);

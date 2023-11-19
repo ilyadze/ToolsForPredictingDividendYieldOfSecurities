@@ -11,7 +11,6 @@ export class AuthenticationService {
 
 
   authenticate(email: any, password:any) {
-    console.log({email , password });
     return this.httpClient
       .post<any>('http://localhost:8083/login', {email , password })
       .pipe(
