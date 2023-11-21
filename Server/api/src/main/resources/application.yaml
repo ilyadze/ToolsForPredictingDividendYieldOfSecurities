@@ -13,8 +13,9 @@ spring:
     hibernate:
       ddl-auto: update
 
-
-
+api:
+  url: https://cloud.iexapis.com
+  token: pk_450c4614acd749539bb82cbbb5df1435
 
 
 jwt:

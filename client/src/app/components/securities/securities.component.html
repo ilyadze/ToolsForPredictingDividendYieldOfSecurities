@@ -4,39 +4,26 @@
   <mat-button-toggle value="underline">Underline</mat-button-toggle>
 </mat-button-toggle-group>
 <mat-list>
-  <mat-list-item>
-    <mat-card>
-      <mat-card-content>Simple card</mat-card-content>
+    <mat-card *ngFor="let security of securities" (click)="goToDetailPage(security.symbol)">
+      <mat-card-header>
+        <mat-card-title>{{security.name}}</mat-card-title>
+        <mat-card-subtitle>{{security.symbol}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <!-- Выведите другие свойства вашего объекта SecuritiesGetDTO -->
+        <p>{{ security.exchange }}</p>
+        <p>{{ security.region }}</p>
+        <p>{{ security.currency }}</p>
+        <!-- ... -->
+      </mat-card-content>
     </mat-card>
-  </mat-list-item>
-  <mat-list-item>
-    <mat-card>
-      <mat-card-content>Simple card</mat-card-content>
-    </mat-card>
-  </mat-list-item>
-  <mat-list-item>
-    <mat-card>
-      <mat-card-content>Simple card</mat-card-content>
-    </mat-card>
-  </mat-list-item>
-  <mat-list-item>
-    <mat-card>
-      <mat-card-content>Simple card</mat-card-content>
-    </mat-card>
-  </mat-list-item>
-  <mat-list-item>
-    <mat-card>
-      <mat-card-content>Simple card</mat-card-content>
-    </mat-card>
-  </mat-list-item>
-  <mat-list-item>
-    <mat-card>
-      <mat-card-content>Simple card</mat-card-content>
-    </mat-card>
-  </mat-list-item>
 </mat-list>
-<mat-paginator [length]="100"
-               [pageSize]="10"
-               [pageSizeOptions]="[5, 10, 25, 100]"
+<mat-paginator #paginator
+               (page)="handlePageEvent($event)"
+               [length]="length"
+               [pageSize]="pageSize"
+               [showFirstLastButtons]="showFirstLastButtons"
+               [hidePageSize]="true"
+               [pageIndex]="pageIndex"
                aria-label="Select page">
 </mat-paginator>

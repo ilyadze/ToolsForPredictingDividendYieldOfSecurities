@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {UserCreateDto} from "../models/person/PersonCreateDTO";
+import {SecuritiesGetDTO} from "../models/securities/SecuritiesGetDTO";
+import {Observable} from "rxjs";
 
 
 @Injectable({
@@ -9,8 +11,12 @@ import {UserCreateDto} from "../models/person/PersonCreateDTO";
 export class HttpClientService {
   constructor(private httpClient: HttpClient) {}
 
-  getProducts() {
-    // return this.httpClient.get<Product[]>('http://localhost:8080/data/products');
+  getSecurities(fromIndex: number, toIndex: number) {
+    return this.httpClient.get<SecuritiesGetDTO[]>('http://localhost:8083/securities?from=' + fromIndex + '&to=' + toIndex);
+  }
+
+  getSecuritiesLength(): Observable<number> {
+    return this.httpClient.get<number>('http://localhost:8083/securities/length');
   }
 
   public deleteProduct(id: number) {
@@ -41,22 +47,6 @@ export class HttpClientService {
   registerUser(user: UserCreateDto) {
     return this.httpClient.post('http://localhost:8083/register', user);
   }
-
-  // completeOrder(order: OrderCreateDto) {
-  //   return this.httpClient.post('http://localhost:8080/data/orders', order);
-  // }
-
-  // addProduct(product: Product) {
-  //   return this.httpClient.post('http://localhost:8080/data/products', product);
-  // }
-  //
-  // editProduct(product: Product) {
-  //   return this.httpClient.patch('http://localhost:8080/data/products/update?id=' + product.id, product);
-  // }
-
-  // getUsers() {
-  //   return this.httpClient.get<User[]>('http://localhost:8080/data/users/all');
-  // }
 
   deleteUser(id: string) {
     return this.httpClient.patch('http://localhost:8080/data/users/delete?id='
