@@ -1,0 +1,49 @@
+<!-- your-component.component.html -->
+<mat-card *ngIf="securitiesInfo">
+  <mat-card-header>
+    <img mat-card-avatar [src]="securitiesInfo.logo" alt="Logo">
+    <mat-card-title>{{ securitiesInfo.companyName }}</mat-card-title>
+    <mat-card-subtitle>Symbol: {{ securitiesInfo.symbol }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-grid-list cols="2" rowHeight="2:1">
+      <mat-grid-tile>
+        <mat-tab-group>
+          <mat-tab label="First">
+            <ng-template matTabContent>
+              Content 1 - Loaded: {{getTimeLoaded(1) | date:'medium'}}
+            </ng-template>
+          </mat-tab>
+          <mat-tab label="Second">
+            <ng-template matTabContent>
+              Content 2 - Loaded: {{getTimeLoaded(2) | date:'medium'}}
+            </ng-template>
+          </mat-tab>
+          <mat-tab label="Third">
+            <ng-template matTabContent>
+              Content 3 - Loaded: {{getTimeLoaded(3) | date:'medium'}}
+            </ng-template>
+          </mat-tab>
+        </mat-tab-group>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <div class="mat-grid-tile-content">
+          <p>Exchange: {{ securitiesInfo.exchange }}</p>
+          <p>Industry: {{ securitiesInfo.industry }}</p>
+          <p>Website: {{ securitiesInfo.website }}</p>
+          <p>Description: {{ securitiesInfo.description }}</p>
+          <p>CEO: {{ securitiesInfo.CEO }}</p>
+          <p>Security Name: {{ securitiesInfo.securityName }}</p>
+          <p>Sector: {{ securitiesInfo.sector }}</p>
+          <p>Employees: {{ securitiesInfo.employees }}</p>
+          <p>Address: {{ securitiesInfo.address }}</p>
+          <p>City: {{ securitiesInfo.city }}</p>
+          <p>State: {{ securitiesInfo.state }}</p>
+          <p>Country: {{ securitiesInfo.country }}</p>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card-content>
+</mat-card>
+

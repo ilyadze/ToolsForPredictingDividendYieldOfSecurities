@@ -1,9 +1,18 @@
 mat-card {
   display: flex;
   flex-direction: row;
-  /* Вы можете добавить другие стили по вашему усмотрению, например, отступы, цвет фона и т. д. */
+  align-items: center;
 }
 
 mat-card-content {
-  flex: 1; /* Растягивает содержимое, чтобы занимать все доступное пространство */
+  display: flex;
+  flex: 1;
+}
+
+mat-card-content p{
+  margin: 0 20px;
+}
+
+img {
+  height: 35px;
 }

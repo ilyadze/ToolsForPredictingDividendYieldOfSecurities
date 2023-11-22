@@ -29,13 +29,33 @@ public class ApiClient {
 
     }
 
+    public List<SecuritiesGetDTO> getSecuritiesSubList(Integer from, Integer to) {
+        List<SecuritiesGetDTO> list = restTemplate.exchange(URL + "/stable/ref-data/symbols" + "?token=" + API_TOKEN,
+                        org.springframework.http.HttpMethod.GET,
+                        null,
+                        new ParameterizedTypeReference<List<SecuritiesGetDTO>>() {})
+                .getBody().subList(from, to );
+        for(SecuritiesGetDTO el: list) {
+            el.setLogo(getSecurityLogo(el.getSymbol()));
+        }
+        return list;
+
+    }
+
     public SecuritiesInfoDTO getSecuritiesInfo(String symbol) {
-        return restTemplate.exchange(URL + "/stable/stock/" + symbol + "/company?token=" + API_TOKEN,
+        SecuritiesInfoDTO dto = restTemplate.exchange(URL + "/stable/stock/" + symbol + "/company?token=" + API_TOKEN,
                         org.springframework.http.HttpMethod.GET,
                         null,
                         new ParameterizedTypeReference<SecuritiesInfoDTO>() {})
-                        .getBody();
+                .getBody();
+        dto.setLogo(getSecurityLogo(symbol));
+        return dto;
 
+    }
+
+    public String getSecurityLogo(String symbol) {
+        String logo = restTemplate.getForObject(URL + "/stable/stock/" + symbol + "/logo?token=" + API_TOKEN, String.class).substring(8);
+        return logo.substring(0, logo.length() - 2);
     }
 }
 

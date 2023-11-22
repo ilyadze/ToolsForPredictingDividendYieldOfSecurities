@@ -4,7 +4,17 @@
   <mat-button-toggle value="underline">Underline</mat-button-toggle>
 </mat-button-toggle-group>
 <mat-list>
+  <table matSort (matSortChange)="sortData($event)">
+    <tr>
+      <th mat-sort-header="name">Name</th>
+      <th mat-sort-header="symbol">Symbol</th>
+      <th mat-sort-header="exchange">Exchange</th>
+      <th mat-sort-header="region">Region</th>
+      <th mat-sort-header="currency">Currency</th>
+    </tr>
+  </table>
     <mat-card *ngFor="let security of securities" (click)="goToDetailPage(security.symbol)">
+      <img mat-card-image src="{{security.logo}}">
       <mat-card-header>
         <mat-card-title>{{security.name}}</mat-card-title>
         <mat-card-subtitle>{{security.symbol}}</mat-card-subtitle>

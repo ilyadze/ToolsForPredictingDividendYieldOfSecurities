@@ -14,6 +14,7 @@ import lombok.experimental.FieldDefaults;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class SecuritiesInfoDTO {
+    String logo;
     String symbol;
     String companyName;
     String exchange;

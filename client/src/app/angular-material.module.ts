@@ -9,7 +9,11 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatListModule} from '@angular/material/list';
 import {MatToolbarModule} from '@angular/material/toolbar';
-
+import {MatSortModule} from '@angular/material/sort';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   imports: [
@@ -21,7 +25,12 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatPaginatorModule,
     MatButtonToggleModule,
     MatListModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatSortModule,
+    MatMenuModule,
+    MatAutocompleteModule,
+    MatGridListModule,
+    MatTabsModule
   ],
   exports: [
     MatFormFieldModule,
@@ -32,7 +41,12 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatPaginatorModule,
     MatButtonToggleModule,
     MatListModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatSortModule,
+    MatMenuModule,
+    MatAutocompleteModule,
+    MatGridListModule,
+    MatTabsModule
   ]
 })
 

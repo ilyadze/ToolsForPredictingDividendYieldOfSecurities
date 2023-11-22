@@ -16,12 +16,12 @@ import java.sql.Timestamp;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class SecuritiesGetDTO {
+    String logo;
     String symbol;
     String name;
     String exchange;
     String exchangeName;
-    String assetType;
     String region;
     String currency;
-    Timestamp date;
+
 }

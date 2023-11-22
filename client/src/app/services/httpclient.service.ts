@@ -3,26 +3,27 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {UserCreateDto} from "../models/person/PersonCreateDTO";
 import {SecuritiesGetDTO} from "../models/securities/SecuritiesGetDTO";
 import {Observable} from "rxjs";
+import {SecuritiesInfoDTO} from "../models/securities/SecuritiesInfoDTO";
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpClientService {
+
+  private base_url = 'http://localhost:8083/securities'
   constructor(private httpClient: HttpClient) {}
 
   getSecurities(fromIndex: number, toIndex: number) {
-    return this.httpClient.get<SecuritiesGetDTO[]>('http://localhost:8083/securities?from=' + fromIndex + '&to=' + toIndex);
+    return this.httpClient.get<SecuritiesGetDTO[]>(this.base_url + '?from=' + fromIndex + '&to=' + toIndex);
+  }
+
+  getSecuritiesInfo(symbol: string) {
+    return this.httpClient.get<SecuritiesInfoDTO>(this.base_url + '/' + symbol);
   }
 
   getSecuritiesLength(): Observable<number> {
-    return this.httpClient.get<number>('http://localhost:8083/securities/length');
-  }
-
-  public deleteProduct(id: number) {
-    return this.httpClient.patch(
-      'http://localhost:8080/data/products/delete?ID=' + id.toString(), {}
-    );
+    return this.httpClient.get<number>(this.base_url + '/length');
   }
 
 
@@ -53,5 +54,7 @@ export class HttpClientService {
       + id, {}
     );
   }
+
+
 
 }

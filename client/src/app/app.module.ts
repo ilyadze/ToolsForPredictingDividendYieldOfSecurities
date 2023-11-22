@@ -12,6 +12,7 @@ import {ProfileComponent} from "./components/profile/profile.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import {SecuritiesDetailsComponent} from "./components/securities-details/securities-details.component";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     RegistrationComponent,
     HeaderComponent,
     SecuritiesComponent,
-    ProfileComponent
+    ProfileComponent,
+    SecuritiesDetailsComponent
   ],
   imports: [
     BrowserModule,

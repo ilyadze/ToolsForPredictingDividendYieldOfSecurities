@@ -1,0 +1,8 @@
+.mat-grid-tile-content {
+  display: block;
+  width: 40%;
+}
+mat-tab-group {
+  width: 100%;
+  height: 100%;
+}

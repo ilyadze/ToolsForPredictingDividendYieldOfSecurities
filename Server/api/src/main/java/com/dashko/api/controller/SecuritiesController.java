@@ -23,7 +23,7 @@ public class SecuritiesController {
 
     @GetMapping("")
     public ResponseEntity<List<SecuritiesGetDTO>> getSecurities(@RequestParam("from") Integer fromIndex,@RequestParam("to") Integer toIndex) {
-        return ResponseEntity.ok(apiClient.getSecurities().subList(fromIndex, toIndex));
+        return ResponseEntity.ok(apiClient.getSecuritiesSubList(fromIndex, toIndex));
     }
 
     @GetMapping("/length")

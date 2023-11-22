@@ -1,4 +1,5 @@
 export class SecuritiesGetDTO {
+  logo: string;
   symbol: string;
   name: string;
   exchange: string;
