@@ -2,10 +2,8 @@ package com.dashko.api.clients;
 
 import com.dashko.api.dto.securities.SecuritiesGetDTO;
 import com.dashko.api.dto.securities.SecuritiesInfoDTO;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -21,7 +19,7 @@ public class ApiClient {
     final RestTemplate restTemplate = new RestTemplate();
 
     public List<SecuritiesGetDTO> getSecurities() {
-        return restTemplate.exchange(URL + "/stable/ref-data/symbols" + "?token=" + API_TOKEN,
+        return restTemplate.exchange(URL + "/stable/ref-data/symbols" + "?" + API_TOKEN,
                 org.springframework.http.HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<List<SecuritiesGetDTO>>() {})
@@ -30,7 +28,7 @@ public class ApiClient {
     }
 
     public List<SecuritiesGetDTO> getSecuritiesSubList(Integer from, Integer to) {
-        List<SecuritiesGetDTO> list = restTemplate.exchange(URL + "/stable/ref-data/symbols" + "?token=" + API_TOKEN,
+        List<SecuritiesGetDTO> list = restTemplate.exchange(URL + "/stable/ref-data/symbols" + "?" + API_TOKEN,
                         org.springframework.http.HttpMethod.GET,
                         null,
                         new ParameterizedTypeReference<List<SecuritiesGetDTO>>() {})
@@ -39,11 +37,10 @@ public class ApiClient {
             el.setLogo(getSecurityLogo(el.getSymbol()));
         }
         return list;
-
     }
 
     public SecuritiesInfoDTO getSecuritiesInfo(String symbol) {
-        SecuritiesInfoDTO dto = restTemplate.exchange(URL + "/stable/stock/" + symbol + "/company?token=" + API_TOKEN,
+        SecuritiesInfoDTO dto = restTemplate.exchange(URL + "/stable/stock/" + symbol + "/company?" + API_TOKEN,
                         org.springframework.http.HttpMethod.GET,
                         null,
                         new ParameterizedTypeReference<SecuritiesInfoDTO>() {})
@@ -54,8 +51,10 @@ public class ApiClient {
     }
 
     public String getSecurityLogo(String symbol) {
-        String logo = restTemplate.getForObject(URL + "/stable/stock/" + symbol + "/logo?token=" + API_TOKEN, String.class).substring(8);
+        String logo = restTemplate.getForObject(URL + "/stable/stock/" + symbol + "/logo?" + API_TOKEN, String.class).substring(8);
         return logo.substring(0, logo.length() - 2);
     }
+
+
 }
 

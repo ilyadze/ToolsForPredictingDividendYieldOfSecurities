@@ -11,7 +11,8 @@ const routes: Routes = [
   { path: 'sign-up', component: RegistrationComponent },
   { path: 'securities', component: SecuritiesComponent},
   { path: 'profile', component: ProfileComponent},
-  {path: 'securities/:symbol', component: SecuritiesDetailsComponent}
+  {path: 'securities/:symbol', component: SecuritiesDetailsComponent},
+  { path: '**',redirectTo: 'securities', pathMatch: 'full'}
 ];
 
 @NgModule({
