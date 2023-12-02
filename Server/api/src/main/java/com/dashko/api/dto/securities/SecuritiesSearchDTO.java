@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.math.BigDecimal;
+
 @Data
 @Builder
 @Getter
@@ -13,22 +15,11 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class SecuritiesInfoDTO {
-    String image;
+public class SecuritiesSearchDTO {
     String symbol;
-    String price;
-    String changes;
-    String companyName;
+    String name;
     String currency;
-    String exchange;
+    String stockExchange;
     String exchangeShortName;
-    String industry;
-    String website;
-    String description;
-    String ceo;
-    String sector;
-    String country;
-    String address;
-    String city;
-    String state;
+
 }

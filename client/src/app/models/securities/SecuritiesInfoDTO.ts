@@ -1,17 +1,19 @@
 export class SecuritiesInfoDTO {
-  logo: string;
+  image: string;
   symbol: string;
+  price: string;
+  changes: string;
   companyName: string;
+  currency: string;
   exchange: string;
+  exchangeShortName: string;
   industry: string;
   website: string;
   description: string;
-  CEO: string;
-  securityName: string;
+  ceo: string;
   sector: string;
-  employees: string;
+  country: string;
   address: string;
   city: string;
   state: string;
-  country: string;
 }

@@ -4,6 +4,7 @@ import {UserCreateDto} from "../models/person/PersonCreateDTO";
 import {SecuritiesGetDTO} from "../models/securities/SecuritiesGetDTO";
 import {Observable} from "rxjs";
 import {SecuritiesInfoDTO} from "../models/securities/SecuritiesInfoDTO";
+import {SecuritiesSearchDTO} from "../models/securities/SecuritiesSearchDTO";
 
 
 @Injectable({
@@ -20,6 +21,11 @@ export class HttpClientService {
 
   getSecuritiesInfo(symbol: string) {
     return this.httpClient.get<SecuritiesInfoDTO>(this.base_url + '/' + symbol);
+  }
+
+  search(query: string): Observable<any[]> {
+    console.log("Search");
+    return this.httpClient.get<SecuritiesSearchDTO[]>(`${this.base_url}/search?query=${query}`);
   }
 
   getSecuritiesLength(): Observable<number> {
@@ -54,7 +60,4 @@ export class HttpClientService {
       + id, {}
     );
   }
-
-
-
 }

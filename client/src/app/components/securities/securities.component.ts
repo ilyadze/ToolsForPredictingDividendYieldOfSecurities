@@ -32,9 +32,10 @@ export class SecuritiesComponent implements OnInit{
     this.length = e.length;
     this.pageSize = e.pageSize;
     this.pageIndex = e.pageIndex;
-    console.log(this.pageIndex);
     let fromIndex = this.pageIndex * this.pageSize;
-    this.httpClientService.getSecurities(fromIndex, fromIndex + this.pageSize).subscribe(securities => {
+    this.httpClientService
+      .getSecurities(fromIndex, (fromIndex + this.pageSize)<this.length?fromIndex + this.pageSize:this.length)
+      .subscribe(securities => {
       this.securities = securities;
     })
   }
@@ -65,14 +66,14 @@ export class SecuritiesComponent implements OnInit{
       switch (sort.active) {
         case 'name':
           return compare(a.name, b.name, isAsc);
-        case 'region':
-          return compare(a.region, b.region, isAsc);
+        case 'price':
+          return compare(a.price, b.price, isAsc);
         case 'symbol':
           return compare(a.symbol, b.symbol, isAsc);
         case 'exchange':
           return compare(a.exchange, b.exchange, isAsc);
-        case 'currency':
-          return compare(a.currency, b.currency, isAsc);
+        case 'type':
+          return compare(a.type, b.type, isAsc);
         default:
           return 0;
       }

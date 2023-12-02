@@ -1,0 +1,14 @@
+<!-- search.component.html -->
+<mat-form-field>
+  <input type="text"
+         placeholder="Search"
+         aria-label="Number"
+         matInput
+         [formControl]="searchControl"
+         [matAutocomplete]="auto">
+  <mat-autocomplete  #auto="matAutocomplete">
+    <mat-option *ngFor="let result of searchResults$ | async" [value]="result" (click)="goToDetailPage(result.symbol)">
+      {{ result.name }} - {{result.stockExchange}}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

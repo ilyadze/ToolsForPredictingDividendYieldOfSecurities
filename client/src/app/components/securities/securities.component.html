@@ -1,3 +1,5 @@
+<app-securities-search></app-securities-search>
+<br>
 <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
   <mat-button-toggle value="bold">Bold</mat-button-toggle>
   <mat-button-toggle value="italic">Italic</mat-button-toggle>
@@ -9,12 +11,11 @@
       <th mat-sort-header="name">Name</th>
       <th mat-sort-header="symbol">Symbol</th>
       <th mat-sort-header="exchange">Exchange</th>
-      <th mat-sort-header="region">Region</th>
-      <th mat-sort-header="currency">Currency</th>
+      <th mat-sort-header="type">Type</th>
+      <th mat-sort-header="price">Price</th>
     </tr>
   </table>
     <mat-card *ngFor="let security of securities" (click)="goToDetailPage(security.symbol)">
-      <img mat-card-image src="{{security.logo}}">
       <mat-card-header>
         <mat-card-title>{{security.name}}</mat-card-title>
         <mat-card-subtitle>{{security.symbol}}</mat-card-subtitle>
@@ -22,8 +23,8 @@
       <mat-card-content>
         <!-- Выведите другие свойства вашего объекта SecuritiesGetDTO -->
         <p>{{ security.exchange }}</p>
-        <p>{{ security.region }}</p>
-        <p>{{ security.currency }}</p>
+        <p>{{ security.type }}</p>
+        <p>{{ security.price }}</p>
         <!-- ... -->
       </mat-card-content>
     </mat-card>

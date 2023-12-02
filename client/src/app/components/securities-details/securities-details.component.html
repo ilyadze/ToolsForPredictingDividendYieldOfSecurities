@@ -1,7 +1,7 @@
 <!-- your-component.component.html -->
 <mat-card *ngIf="securitiesInfo">
   <mat-card-header>
-    <img mat-card-avatar [src]="securitiesInfo.logo" alt="Logo">
+    <img  mat-card-avatar [src]="securitiesInfo.image" alt="Logo">
     <mat-card-title>{{ securitiesInfo.companyName }}</mat-card-title>
     <mat-card-subtitle>Symbol: {{ securitiesInfo.symbol }}</mat-card-subtitle>
   </mat-card-header>
@@ -27,16 +27,17 @@
           </mat-tab>
         </mat-tab-group>
       </mat-grid-tile>
-      <mat-grid-tile>
+      <mat-grid-tile style="overflow-y: auto;">
         <div class="mat-grid-tile-content">
           <p>Exchange: {{ securitiesInfo.exchange }}</p>
           <p>Industry: {{ securitiesInfo.industry }}</p>
+          <p>Price: {{ securitiesInfo.price }} {{securitiesInfo.currency}}</p>
+          <p>Changes: {{ securitiesInfo.changes }}</p>
           <p>Website: {{ securitiesInfo.website }}</p>
           <p>Description: {{ securitiesInfo.description }}</p>
-          <p>CEO: {{ securitiesInfo.CEO }}</p>
-          <p>Security Name: {{ securitiesInfo.securityName }}</p>
+          <p>CEO: {{ securitiesInfo.ceo }}</p>
+          <p>Security Name: {{ securitiesInfo.exchangeShortName }}</p>
           <p>Sector: {{ securitiesInfo.sector }}</p>
-          <p>Employees: {{ securitiesInfo.employees }}</p>
           <p>Address: {{ securitiesInfo.address }}</p>
           <p>City: {{ securitiesInfo.city }}</p>
           <p>State: {{ securitiesInfo.state }}</p>

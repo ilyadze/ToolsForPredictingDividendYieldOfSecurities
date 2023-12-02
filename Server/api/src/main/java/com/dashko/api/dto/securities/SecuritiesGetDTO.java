@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 @Data
@@ -16,12 +17,10 @@ import java.sql.Timestamp;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class SecuritiesGetDTO {
-    String logo;
     String symbol;
     String name;
     String exchange;
-    String exchangeName;
-    String region;
-    String currency;
-
+    String exchangeShortName;
+    BigDecimal price;
+    String type;
 }

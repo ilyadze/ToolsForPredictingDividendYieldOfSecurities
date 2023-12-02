@@ -13,6 +13,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {SecuritiesDetailsComponent} from "./components/securities-details/securities-details.component";
+import {SecuritiesSearchComponent} from "./components/securities-search/securities-search.component";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {SecuritiesDetailsComponent} from "./components/securities-details/securi
     HeaderComponent,
     SecuritiesComponent,
     ProfileComponent,
-    SecuritiesDetailsComponent
+    SecuritiesDetailsComponent,
+    SecuritiesSearchComponent
   ],
   imports: [
     BrowserModule,
