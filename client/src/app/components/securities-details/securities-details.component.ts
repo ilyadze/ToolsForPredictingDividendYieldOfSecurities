@@ -10,6 +10,8 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class SecuritiesDetailsComponent implements OnInit{
 
+  symbol: string;
+
   securitiesInfo: SecuritiesInfoDTO;
 
   constructor(private httpClientService: HttpClientService,
@@ -19,16 +21,14 @@ export class SecuritiesDetailsComponent implements OnInit{
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      const symbol = params['symbol'];
-      this.httpClientService.getSecuritiesInfo(symbol).subscribe(securitiesInfo => {
+      this.symbol = params['symbol'];
+      this.httpClientService.getSecuritiesInfo(this.symbol).subscribe(securitiesInfo => {
         this.securitiesInfo = securitiesInfo;
       });
     });
   }
 
   getTimeLoaded(index: number) {
-
-
     return new Date();
   }
 

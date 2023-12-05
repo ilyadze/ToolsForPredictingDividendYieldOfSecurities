@@ -1,5 +1,6 @@
 <mat-toolbar>
   <span (click)="goToMainPage()">My Application</span>
+  <span (click)="goToNews()">News</span>
   <span class="example-spacer"></span>
   <button (click)="goToLoginPage()" *ngIf="!authenticationService.isUserLoggedIn()">
     <mat-icon>login</mat-icon>
@@ -13,9 +14,9 @@
       <mat-icon>person</mat-icon>
       <span>Profile</span>
     </button>
-    <button mat-menu-item >
-      <mat-icon>voicemail</mat-icon>
-      <span>Check voice mail</span>
+    <button mat-menu-item (click)="goToWallet()">
+      <mat-icon>wallet</mat-icon>
+      <span>Wallet</span>
     </button>
     <button mat-menu-item (click)="logout()">
       <mat-icon>logout</mat-icon>

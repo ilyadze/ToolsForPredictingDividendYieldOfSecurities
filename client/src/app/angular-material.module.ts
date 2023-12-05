@@ -14,6 +14,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatMenuModule,
     MatAutocompleteModule,
     MatGridListModule,
-    MatTabsModule
+    MatTabsModule,
+    MatDatepickerModule
   ],
   exports: [
     MatFormFieldModule,
@@ -47,7 +49,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatMenuModule,
     MatAutocompleteModule,
     MatGridListModule,
-    MatTabsModule
+    MatTabsModule,
+    MatDatepickerModule
   ]
 })
 

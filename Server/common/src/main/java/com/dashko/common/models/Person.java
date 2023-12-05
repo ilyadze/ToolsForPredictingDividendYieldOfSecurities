@@ -28,6 +28,7 @@ public class Person {
     Long id;
 
     @Email
+    @Column(unique = true)
     @Size(max = 100)
     String email;
 
@@ -47,7 +48,7 @@ public class Person {
     boolean enabled;
     Timestamp createdAt;
     Timestamp updatedAt;
-
+    String activationCode;
 
     @ToString.Include(name = "password")
     private String maskPassword() {

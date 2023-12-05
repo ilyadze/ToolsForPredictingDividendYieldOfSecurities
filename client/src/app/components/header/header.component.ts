@@ -14,6 +14,13 @@ export class HeaderComponent implements OnInit{
   goToMainPage() {
     this.router.navigate(['securities']);
   }
+  goToNews() {
+    this.router.navigate(['news']);
+  }
+
+  goToWallet() {
+    this.router.navigate(['wallet']);
+  }
 
   goToLoginPage() {
     this.router.navigate(['login']);
@@ -31,5 +38,6 @@ export class HeaderComponent implements OnInit{
   ngOnInit(): void {
   }
 
+  protected readonly ongotpointercapture = ongotpointercapture;
 }
 

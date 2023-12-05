@@ -8,26 +8,26 @@
 
   <mat-card-content>
     <mat-grid-list cols="2" rowHeight="2:1">
-      <mat-grid-tile>
+      <mat-grid-tile style=" height: 100%">
         <mat-tab-group>
-          <mat-tab label="First">
+          <mat-tab label="Prices">
             <ng-template matTabContent>
-              Content 1 - Loaded: {{getTimeLoaded(1) | date:'medium'}}
+              <app-chart-prices [someData]="symbol"></app-chart-prices>
             </ng-template>
           </mat-tab>
-          <mat-tab label="Second">
+          <mat-tab label="Dividends">
             <ng-template matTabContent>
-              Content 2 - Loaded: {{getTimeLoaded(2) | date:'medium'}}
+              <app-chart-dividend [someData]="symbol"></app-chart-dividend>
             </ng-template>
           </mat-tab>
           <mat-tab label="Third">
             <ng-template matTabContent>
-              Content 3 - Loaded: {{getTimeLoaded(3) | date:'medium'}}
+              Content 2 - Loaded: {{getTimeLoaded(2) | date:'medium'}}
             </ng-template>
           </mat-tab>
         </mat-tab-group>
       </mat-grid-tile>
-      <mat-grid-tile style="overflow-y: auto;">
+      <mat-grid-tile style="overflow-y: auto; height: 80%">
         <div class="mat-grid-tile-content">
           <p>Exchange: {{ securitiesInfo.exchange }}</p>
           <p>Industry: {{ securitiesInfo.industry }}</p>

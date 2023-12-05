@@ -5,6 +5,10 @@ import {SecuritiesGetDTO} from "../models/securities/SecuritiesGetDTO";
 import {Observable} from "rxjs";
 import {SecuritiesInfoDTO} from "../models/securities/SecuritiesInfoDTO";
 import {SecuritiesSearchDTO} from "../models/securities/SecuritiesSearchDTO";
+import {NewsGetDTO} from "../models/news/NewsGetDTO";
+import {NewsApiResponse} from "../models/news/NewsApiResponse";
+import {SecurityPriceGetDTO} from "../models/charts/SecurityPriceGetDTO";
+import {SecurityDividendGetDTO} from "../models/charts/SecurityDividendGetDTO";
 
 
 @Injectable({
@@ -24,7 +28,6 @@ export class HttpClientService {
   }
 
   search(query: string): Observable<any[]> {
-    console.log("Search");
     return this.httpClient.get<SecuritiesSearchDTO[]>(`${this.base_url}/search?query=${query}`);
   }
 
@@ -32,7 +35,16 @@ export class HttpClientService {
     return this.httpClient.get<number>(this.base_url + '/length');
   }
 
+  getSecuritiesNews(page:number): Observable<NewsApiResponse> {
+    return this.httpClient.get<NewsApiResponse>(this.base_url + '/news?page=' + page);
+  }
+  getSecuritiesPrices(symbol:string): Observable<SecurityPriceGetDTO[]> {
+    return this.httpClient.get<SecurityPriceGetDTO[]>(this.base_url + '/' + symbol + '/price');
+  }
 
+  getSecuritiesDividends(symbol:string): Observable<SecurityDividendGetDTO[]> {
+    return this.httpClient.get<SecurityDividendGetDTO[]>(this.base_url + '/' + symbol + '/dividends');
+  }
   getProfile() {
     return this.httpClient.get('http://localhost:8080/data/users/user?email='
       + sessionStorage.getItem('username'));

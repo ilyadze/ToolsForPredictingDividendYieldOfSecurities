@@ -2,6 +2,10 @@ package com.dashko.api.controller;
 
 
 import com.dashko.api.clients.ApiClient;
+import com.dashko.api.dto.charts.DividendsValueGetDTO;
+import com.dashko.api.dto.charts.SecurityPriceGetDTO;
+import com.dashko.api.dto.news.NewsApiResponse;
+import com.dashko.api.dto.news.NewsGetDTO;
 import com.dashko.api.dto.securities.SecuritiesGetDTO;
 import com.dashko.api.dto.securities.SecuritiesInfoDTO;
 import com.dashko.api.dto.securities.SecuritiesSearchDTO;
@@ -40,10 +44,22 @@ public class SecuritiesController {
             return ResponseEntity.ok(Collections.emptyList());
         }
         List<SecuritiesSearchDTO> list = apiClient.searchSecurities(query);
-        if (list.size() > 5) {
-            return ResponseEntity.ok(list.subList(0, 5));
-        } else {
-            return ResponseEntity.ok(list);
-        }
+        return ResponseEntity.ok(list);
+
+    }
+
+    @GetMapping("/news")
+    public ResponseEntity<NewsApiResponse> getNews(@RequestParam("page") Integer page) {
+        return ResponseEntity.ok(apiClient.getNews(page));
+    }
+
+    @GetMapping("/{symbol}/price")
+    public ResponseEntity<List<SecurityPriceGetDTO>> getPrices(@PathVariable("symbol") String symbol) {
+        System.out.println(apiClient.getPrices(symbol, "45min"));
+        return ResponseEntity.ok(apiClient.getPrices(symbol, "45min"));
+    }
+    @GetMapping("/{symbol}/dividends")
+    public ResponseEntity<List<DividendsValueGetDTO>> getDividends(@PathVariable("symbol") String symbol) {
+        return ResponseEntity.ok(apiClient.getDividends(symbol).getDividends());
     }
 }

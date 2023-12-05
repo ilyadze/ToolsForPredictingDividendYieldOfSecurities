@@ -14,6 +14,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {SecuritiesDetailsComponent} from "./components/securities-details/securities-details.component";
 import {SecuritiesSearchComponent} from "./components/securities-search/securities-search.component";
+import {ChartDividendComponent} from "./components/chart-dividend/chart-dividend.component";
+import { NgChartsModule } from 'ng2-charts';
+import {NewsComponent} from "./components/news/news.component";
+import {WalletComponent} from "./components/wallet/wallet.component";
+import {ChartPricesComponent} from "./components/chart-prices/chart-prices.component";
+import {MatNativeDateModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -24,7 +30,11 @@ import {SecuritiesSearchComponent} from "./components/securities-search/securiti
     SecuritiesComponent,
     ProfileComponent,
     SecuritiesDetailsComponent,
-    SecuritiesSearchComponent
+    SecuritiesSearchComponent,
+    ChartDividendComponent,
+    NewsComponent,
+    WalletComponent,
+    ChartPricesComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +43,10 @@ import {SecuritiesSearchComponent} from "./components/securities-search/securiti
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgChartsModule,
+    BrowserModule,
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

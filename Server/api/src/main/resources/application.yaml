@@ -6,8 +6,19 @@ spring:
     url: jdbc:postgresql://localhost:5432/predictdividentdb
     username: postgres
     password: postgres
-
-
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    protocol: smtp
+    username: ilya.dashko228@gmail.com
+    password: ihbcewkbijsuutbe
+    test-connection: true
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
   jpa:
     show-sql: true
     hibernate:
@@ -16,6 +27,7 @@ spring:
 api:
   url: https://financialmodelingprep.com/api
   token: apikey=EklueuaDiiIs1JpIOeTMFgqQAfRra2an
+  token_2: apikey=4f0212439d2fbcca3ab6d60c3f1d15a7
 
 
 jwt:

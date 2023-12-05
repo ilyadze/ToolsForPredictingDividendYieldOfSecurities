@@ -13,4 +13,6 @@ public interface IPersonService {
 
     public Person registerUser(Person person);
 
+    public Person activateUser(String code);
+
 }
