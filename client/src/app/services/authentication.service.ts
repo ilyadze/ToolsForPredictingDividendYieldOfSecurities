@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import {Observable} from "rxjs";
+import {UserCreateDto} from "../models/person/PersonCreateDTO";
 
 @Injectable({
   providedIn: 'root'
@@ -8,11 +10,11 @@ import { map } from 'rxjs/operators';
 export class AuthenticationService {
   constructor(private httpClient: HttpClient) {}
 
-
+    base_url = 'http://localhost:8083';
 
   authenticate(email: any, password:any) {
     return this.httpClient
-      .post<any>('http://localhost:8083/login', {email , password })
+      .post<any>(this.base_url  + '/login', {email , password })
       .pipe(
         map(userData => {
           sessionStorage.setItem('username', email);
@@ -23,6 +25,16 @@ export class AuthenticationService {
         })
       );
   }
+
+
+  registerUser(user: UserCreateDto) {
+      return this.httpClient.post('http://localhost:8083/register', user);
+  }
+
+  activateAccount(activationCode: string): Observable<any> {
+      return this.httpClient.get(`${this.base_url}/activate/${activationCode}`);
+  }
+
 
   isUserLoggedIn() {
     let user = sessionStorage.getItem('username');

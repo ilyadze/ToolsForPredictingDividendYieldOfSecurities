@@ -1,11 +1,17 @@
 server:
   port: 8083
 spring:
+# ===============================
+# = Hibernate datasource
+# ===============================
   datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/predictdividentdb
     username: postgres
     password: postgres
+# ===============================
+# = Email SMTP configurations
+# ===============================
   mail:
     host: smtp.gmail.com
     port: 587
@@ -19,6 +25,9 @@ spring:
           auth: true
           starttls:
             enable: true
+# ===============================
+# = JPA configurations
+# ===============================
   jpa:
     show-sql: true
     hibernate:

@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {UserCreateDto} from "../../models/person/PersonCreateDTO";
 import {HttpClientService} from "../../services/httpclient.service";
+import {AuthenticationService} from "../../services/authentication.service";
 
 
 @Component({
@@ -17,7 +18,7 @@ export class RegistrationComponent implements OnInit{
   // user: UserCreateDto;
 
   constructor(private formBuilder: FormBuilder,
-              private httpClientService: HttpClientService,
+              private authenticationService: AuthenticationService,
               private router: Router) {
 
   }
@@ -41,7 +42,7 @@ export class RegistrationComponent implements OnInit{
 
   register() {
     // this.user = this.registerForm.getRawValue();
-    this.httpClientService.registerUser({
+    this.authenticationService.registerUser({
       email: this.registerForm.value.email,
       username: this.registerForm.value.username,
       firstname: this.registerForm.value.firstname,

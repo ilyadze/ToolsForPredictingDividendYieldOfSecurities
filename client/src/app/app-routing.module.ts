@@ -7,6 +7,7 @@ import {ProfileComponent} from "./components/profile/profile.component";
 import {SecuritiesDetailsComponent} from "./components/securities-details/securities-details.component";
 import {NewsComponent} from "./components/news/news.component";
 import {WalletComponent} from "./components/wallet/wallet.component";
+import {ActivationComponent} from "./components/activation/activation.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'securities/:symbol', component: SecuritiesDetailsComponent},
   {path: 'news', component: NewsComponent},
   {path: 'wallet', component: WalletComponent},
+  { path: 'activate/:activationCode', component: ActivationComponent },
   { path: '**',redirectTo: 'securities', pathMatch: 'full'}
 ];
 

@@ -10,10 +10,12 @@ import com.dashko.api.dto.securities.SecuritiesGetDTO;
 import com.dashko.api.dto.securities.SecuritiesInfoDTO;
 import com.dashko.api.dto.securities.SecuritiesSearchDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -54,12 +56,15 @@ public class SecuritiesController {
     }
 
     @GetMapping("/{symbol}/price")
-    public ResponseEntity<List<SecurityPriceGetDTO>> getPrices(@PathVariable("symbol") String symbol) {
-        System.out.println(apiClient.getPrices(symbol, "45min"));
-        return ResponseEntity.ok(apiClient.getPrices(symbol, "45min"));
+    public ResponseEntity<List<SecurityPriceGetDTO>> getPrices(@PathVariable("symbol") String symbol,
+                                                               @RequestParam("from") String from,
+                                                               @RequestParam("to") String to) {
+        return ResponseEntity.ok(apiClient.getPrices(symbol, "45min", from, to));
     }
     @GetMapping("/{symbol}/dividends")
-    public ResponseEntity<List<DividendsValueGetDTO>> getDividends(@PathVariable("symbol") String symbol) {
-        return ResponseEntity.ok(apiClient.getDividends(symbol).getDividends());
+    public ResponseEntity<List<DividendsValueGetDTO>> getDividends(@PathVariable("symbol") String symbol,
+                                                                   @RequestParam("from") String from,
+                                                                   @RequestParam("to") String to) {
+        return ResponseEntity.ok(apiClient.getDividends(symbol, from, to).getDividends());
     }
 }

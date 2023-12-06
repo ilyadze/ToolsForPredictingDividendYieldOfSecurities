@@ -13,6 +13,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,7 +22,7 @@ public class ApiClient {
 
     @Value("${api.url}")
     private  String URL;
-    @Value("${api.token_2}")
+    @Value("${api.token}")
     private  String API_TOKEN;
     final RestTemplate restTemplate = new RestTemplate();
 
@@ -67,18 +68,23 @@ public class ApiClient {
     }
 
 
-    public List<SecurityPriceGetDTO> getPrices(String symbol, String time) {
+    public List<SecurityPriceGetDTO> getPrices(String symbol, String time, String from, String to) {
         return restTemplate.exchange(URL + "/v3/historical-chart/" + time +
-                                "/" + symbol + "?from=2023-10-09&to=2023-10-10" + "&" + API_TOKEN,
+                                "/" + symbol +
+                                "?from=" + from + "&to=" + to +
+                                "&" + API_TOKEN,
                         org.springframework.http.HttpMethod.GET,
                         null,
                         new ParameterizedTypeReference<List<SecurityPriceGetDTO>>() {})
                 .getBody();
     }
 
-    @Cacheable("newsCache")
-    public DividendsApiResponse getDividends(String symbol) {
-        return restTemplate.exchange(URL + "/v3/historical-price-full/stock_dividend/" + symbol + "?" + API_TOKEN,
+
+    public DividendsApiResponse getDividends(String symbol, String from, String to) {
+        return restTemplate.exchange(URL + "/v3/historical-price-full/stock_dividend/"
+                                + symbol + "?"
+                                + "from=" + from + "&to=" + to
+                                + "&" + API_TOKEN,
                         org.springframework.http.HttpMethod.GET,
                         null,
                         new ParameterizedTypeReference<DividendsApiResponse>() {})

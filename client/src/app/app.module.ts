@@ -20,6 +20,7 @@ import {NewsComponent} from "./components/news/news.component";
 import {WalletComponent} from "./components/wallet/wallet.component";
 import {ChartPricesComponent} from "./components/chart-prices/chart-prices.component";
 import {MatNativeDateModule} from "@angular/material/core";
+import {ActivationComponent} from "./components/activation/activation.component";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {MatNativeDateModule} from "@angular/material/core";
     ChartDividendComponent,
     NewsComponent,
     WalletComponent,
-    ChartPricesComponent
+    ChartPricesComponent,
+    ActivationComponent
   ],
   imports: [
     BrowserModule,

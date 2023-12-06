@@ -38,38 +38,23 @@ export class HttpClientService {
   getSecuritiesNews(page:number): Observable<NewsApiResponse> {
     return this.httpClient.get<NewsApiResponse>(this.base_url + '/news?page=' + page);
   }
-  getSecuritiesPrices(symbol:string): Observable<SecurityPriceGetDTO[]> {
-    return this.httpClient.get<SecurityPriceGetDTO[]>(this.base_url + '/' + symbol + '/price');
+  getSecuritiesPrices(symbol:string, from: Date, to: Date): Observable<SecurityPriceGetDTO[]> {
+    return this.httpClient.get<SecurityPriceGetDTO[]>(this.base_url + '/' + symbol +
+        '/price?from='+ this.formatDate(from) +
+        '&to='+ this.formatDate(to));
   }
 
-  getSecuritiesDividends(symbol:string): Observable<SecurityDividendGetDTO[]> {
-    return this.httpClient.get<SecurityDividendGetDTO[]>(this.base_url + '/' + symbol + '/dividends');
-  }
-  getProfile() {
-    return this.httpClient.get('http://localhost:8080/data/users/user?email='
-      + sessionStorage.getItem('username'));
+  getSecuritiesDividends(symbol:string, from: Date, to: Date): Observable<SecurityDividendGetDTO[]> {
+    return this.httpClient.get<SecurityDividendGetDTO[]>(this.base_url + '/' + symbol +
+        '/dividends?from='+ this.formatDate(from) +
+        '&to='+ this.formatDate(to));
   }
 
-  // updateProfile(user: User) {
-  //   return this.httpClient.patch(
-  //     'http://localhost:8080/data/users/update?id='
-  //     + sessionStorage.getItem('userId'),
-  //     user);
-  // }
-
-  deleteAccount() {
-    return this.httpClient.patch('http://localhost:8080/data/users/delete?id='
-      + sessionStorage.getItem('userId'), {}
-    );
-  }
-
-  registerUser(user: UserCreateDto) {
-    return this.httpClient.post('http://localhost:8083/register', user);
-  }
-
-  deleteUser(id: string) {
-    return this.httpClient.patch('http://localhost:8080/data/users/delete?id='
-      + id, {}
-    );
+  private formatDate(date: Date): string {
+    // Пример форматирования даты в строку "YYYY-MM-DD"
+    const year = date.getFullYear();
+    const month = ('0' + (date.getMonth() + 1)).slice(-2);
+    const day = ('0' + date.getDate()).slice(-2);
+    return `${year}-${month}-${day}`;
   }
 }

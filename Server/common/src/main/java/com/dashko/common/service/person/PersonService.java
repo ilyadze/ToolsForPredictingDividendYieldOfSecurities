@@ -68,6 +68,7 @@ public class PersonService implements IPersonService{
     public Person activateUser(String code) {
         Person person = personRepository.findByActivationCode(code).orElseThrow(EntityNotFoundException::new);
         person.setActivationCode(null);
-        return personRepository.save(person);
+        personRepository.save(person);
+        return person;
     }
 }
