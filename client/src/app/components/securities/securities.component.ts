@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PageEvent} from "@angular/material/paginator";
-import {HttpClientService} from "../../services/httpclient.service";
+import {SecuritiesService} from "../../services/securities.service";
 import {SecuritiesGetDTO} from "../../models/securities/SecuritiesGetDTO";
 import {Router} from "@angular/router";
 import {Sort} from "@angular/material/sort";
@@ -23,7 +23,7 @@ export class SecuritiesComponent implements OnInit{
   pageEvent: PageEvent;
 
 
-  constructor(private httpClientService: HttpClientService,
+  constructor(private securitiesService: SecuritiesService,
               private router: Router) {
   }
 
@@ -33,7 +33,7 @@ export class SecuritiesComponent implements OnInit{
     this.pageSize = e.pageSize;
     this.pageIndex = e.pageIndex;
     let fromIndex = this.pageIndex * this.pageSize;
-    this.httpClientService
+    this.securitiesService
       .getSecurities(fromIndex, (fromIndex + this.pageSize)<this.length?fromIndex + this.pageSize:this.length)
       .subscribe(securities => {
       this.securities = securities;
@@ -41,11 +41,11 @@ export class SecuritiesComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.httpClientService.getSecuritiesLength().subscribe(length => {
+    this.securitiesService.getSecuritiesLength().subscribe(length => {
       this.length = length;
     });
     let fromIndex = this.pageIndex * this.pageSize;
-    this.httpClientService.getSecurities(fromIndex, fromIndex + this.pageSize).subscribe(securities => {
+    this.securitiesService.getSecurities(fromIndex, fromIndex + this.pageSize).subscribe(securities => {
       this.securities = securities;
     })
   }

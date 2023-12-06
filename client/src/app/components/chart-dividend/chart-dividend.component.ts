@@ -1,6 +1,6 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {Chart} from "chart.js";
-import {HttpClientService} from "../../services/httpclient.service";
+import {SecuritiesService} from "../../services/securities.service";
 import {SecurityPriceGetDTO} from "../../models/charts/SecurityPriceGetDTO";
 import {SecurityDividendGetDTO} from "../../models/charts/SecurityDividendGetDTO";
 import {MatDatepickerInputEvent} from "@angular/material/datepicker";
@@ -14,12 +14,12 @@ export class ChartDividendComponent implements OnInit{
 
   @Input() someData: any;
   @ViewChild('myChart') myChart!: ElementRef;
-  prices: SecurityDividendGetDTO[];
+  dividends: SecurityDividendGetDTO[];
   startDate: Date = new Date('2020-11-05');
   endDate: Date = new Date();
   chart: Chart;
 
-  constructor(private httpClientService: HttpClientService) {
+  constructor(private httpClientService: SecuritiesService) {
   }
 
 
@@ -28,9 +28,9 @@ export class ChartDividendComponent implements OnInit{
     this.chart = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: this.prices.map(item => item.label).reverse(),
+        labels: this.dividends.map(item => item.label).reverse(),
         datasets: [{
-          data: this.prices.map(item => item.dividend).reverse(),
+          data: this.dividends.map(item => item.dividend).reverse(),
           // backgroundColor: ['red', 'green', 'blue'],
         }],
       },
@@ -39,8 +39,9 @@ export class ChartDividendComponent implements OnInit{
 
   ngOnInit(): void {
     this.httpClientService.getSecuritiesDividends(this.someData, this.startDate, this.endDate).subscribe(result => {
-      this.prices = result;
+      this.dividends = result;
       this.renderChart();
+
     });
   }
 

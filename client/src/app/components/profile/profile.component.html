@@ -1,1 +1,19 @@
-<p>profile works!</p>
+<!-- your-component.component.html -->
+<mat-card>
+    <mat-card-header>
+        <mat-icon mat-card-avatar>profile</mat-icon>
+        <mat-card-title>{{person.username}}</mat-card-title>
+        <mat-card-subtitle></mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+                <div class="mat-grid-tile-content">
+                    <p>Email: {{person.email}}</p>
+                    <p>Firstname: {{person.firstname}}</p>
+                    <p>Lastname: {{person.lastname}}</p>
+                    <p>Role: {{person.role}}</p>
+
+                </div>
+    </mat-card-content>
+</mat-card>
+

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {HttpClientService} from "../../services/httpclient.service";
+import {SecuritiesService} from "../../services/securities.service";
 import {AuthenticationService} from "../../services/authentication.service";
 
 @Component({

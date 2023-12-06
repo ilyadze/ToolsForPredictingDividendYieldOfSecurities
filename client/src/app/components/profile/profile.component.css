@@ -1,0 +1,8 @@
+.mat-grid-tile-content {
+    display: block;
+    width: 40%;
+}
+
+mat-card {
+    height: 90%;
+}

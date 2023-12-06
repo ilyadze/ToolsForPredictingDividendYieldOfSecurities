@@ -1,5 +1,5 @@
 import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
-import {HttpClientService} from "../../services/httpclient.service";
+import {SecuritiesService} from "../../services/securities.service";
 import {Chart} from "chart.js";
 import {SecurityPriceGetDTO} from "../../models/charts/SecurityPriceGetDTO";
 
@@ -16,7 +16,7 @@ export class ChartPricesComponent implements OnInit{
   startDate: Date = new Date('2023-11-05');
   endDate: Date = new Date('2023-12-03');
 
-  constructor(private httpClientService: HttpClientService) {
+  constructor(private httpClientService: SecuritiesService) {
   }
 
 

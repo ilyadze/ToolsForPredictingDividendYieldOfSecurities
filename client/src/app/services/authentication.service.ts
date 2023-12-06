@@ -17,7 +17,7 @@ export class AuthenticationService {
       .post<any>(this.base_url  + '/login', {email , password })
       .pipe(
         map(userData => {
-          sessionStorage.setItem('username', email);
+          sessionStorage.setItem('email', email);
           let tokenStr = userData.token;
           sessionStorage.setItem('token', tokenStr);
           sessionStorage.setItem('userId', userData.userId);
@@ -37,7 +37,7 @@ export class AuthenticationService {
 
 
   isUserLoggedIn() {
-    let user = sessionStorage.getItem('username');
+    let user = sessionStorage.getItem('email');
     return !(user === null);
   }
 

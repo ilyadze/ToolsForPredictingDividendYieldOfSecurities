@@ -8,10 +8,10 @@ import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring",  builder = @Builder(disableBuilder = true))
-public interface PersonMapper {
-    PersonCreateDTO map(Person person);
+public interface PersonGetMapper {
+    PersonGetDTO map(Person person);
 
     @InheritInverseConfiguration
-    Person map(PersonCreateDTO dto);
+    Person map(PersonGetDTO dto);
 
 }

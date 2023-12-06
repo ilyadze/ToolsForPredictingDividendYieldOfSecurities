@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl} from "@angular/forms";
 import {debounceTime, distinctUntilChanged, switchMap} from "rxjs/operators";
-import {HttpClientService} from "../../services/httpclient.service";
+import {SecuritiesService} from "../../services/securities.service";
 import {SecuritiesSearchDTO} from "../../models/securities/SecuritiesSearchDTO";
 import {Observable} from "rxjs";
 import {Router} from "@angular/router";
@@ -15,7 +15,7 @@ export class SecuritiesSearchComponent {
   searchControl = new FormControl();
   searchResults$: Observable<SecuritiesSearchDTO[]>;
 
-  constructor(private searchService: HttpClientService, private router: Router) {
+  constructor(private searchService: SecuritiesService, private router: Router) {
     this.searchResults$ = this.searchControl.valueChanges.pipe(
       debounceTime(300),
       distinctUntilChanged(),

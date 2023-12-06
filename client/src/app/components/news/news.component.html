@@ -5,7 +5,7 @@
     </mat-card-header>
     <mat-card-content>
         <!-- Выведите другие свойства вашего объекта SecuritiesGetDTO -->
-        <p>{{ oneNews.content }}</p>
+        <p [innerHTML]="oneNews.content"></p>
         <p>{{ oneNews.date }}</p>
         <p>{{ oneNews.tickers }}</p>
         <!-- ... -->

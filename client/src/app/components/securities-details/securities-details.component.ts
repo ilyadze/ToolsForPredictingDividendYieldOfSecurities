@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClientService} from "../../services/httpclient.service";
+import {SecuritiesService} from "../../services/securities.service";
 import {SecuritiesInfoDTO} from "../../models/securities/SecuritiesInfoDTO";
 import {ActivatedRoute} from "@angular/router";
 
@@ -14,7 +14,7 @@ export class SecuritiesDetailsComponent implements OnInit{
 
   securitiesInfo: SecuritiesInfoDTO;
 
-  constructor(private httpClientService: HttpClientService,
+  constructor(private securitiesService: SecuritiesService,
               private route: ActivatedRoute) {
 
   }
@@ -22,7 +22,7 @@ export class SecuritiesDetailsComponent implements OnInit{
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.symbol = params['symbol'];
-      this.httpClientService.getSecuritiesInfo(this.symbol).subscribe(securitiesInfo => {
+      this.securitiesService.getSecuritiesInfo(this.symbol).subscribe(securitiesInfo => {
         this.securitiesInfo = securitiesInfo;
       });
     });

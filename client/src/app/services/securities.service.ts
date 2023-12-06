@@ -14,7 +14,7 @@ import {SecurityDividendGetDTO} from "../models/charts/SecurityDividendGetDTO";
 @Injectable({
   providedIn: 'root'
 })
-export class HttpClientService {
+export class SecuritiesService {
 
   private base_url = 'http://localhost:8083/securities'
   constructor(private httpClient: HttpClient) {}

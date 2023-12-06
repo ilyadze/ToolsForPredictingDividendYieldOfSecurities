@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {NewsGetDTO} from "../../models/news/NewsGetDTO";
-import {HttpClientService} from "../../services/httpclient.service";
+import {SecuritiesService} from "../../services/securities.service";
 import {SecuritiesGetDTO} from "../../models/securities/SecuritiesGetDTO";
 import {PageEvent} from "@angular/material/paginator";
 
@@ -20,11 +20,11 @@ export class NewsComponent implements OnInit{
 
   news: NewsGetDTO[];
 
-  constructor(private httpClientService:HttpClientService) {
+  constructor(private securitiesService:SecuritiesService) {
   }
 
   ngOnInit() {
-    this.httpClientService.getSecuritiesNews(0).subscribe(apiResponse => {
+    this.securitiesService.getSecuritiesNews(0).subscribe(apiResponse => {
       this.news = apiResponse.content;
       this.length = apiResponse.totalPages;
     })
@@ -33,7 +33,7 @@ export class NewsComponent implements OnInit{
   handlePageEvent(e: PageEvent) {
     this.pageEvent = e;
     this.pageIndex = e.pageIndex;
-    this.httpClientService
+    this.securitiesService
         .getSecuritiesNews(this.pageIndex)
         .subscribe(newsApiResponse => {
           this.news = newsApiResponse.content;

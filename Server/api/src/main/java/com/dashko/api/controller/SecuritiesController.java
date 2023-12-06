@@ -9,7 +9,9 @@ import com.dashko.api.dto.news.NewsGetDTO;
 import com.dashko.api.dto.securities.SecuritiesGetDTO;
 import com.dashko.api.dto.securities.SecuritiesInfoDTO;
 import com.dashko.api.dto.securities.SecuritiesSearchDTO;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +23,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/securities")
 @RequiredArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class SecuritiesController {
 
-    private final ApiClient apiClient;
+    ApiClient apiClient;
 
     @GetMapping("")
     public ResponseEntity<List<SecuritiesGetDTO>> getSecurities(@RequestParam("from") Integer fromIndex,@RequestParam("to") Integer toIndex) {
@@ -59,7 +62,7 @@ public class SecuritiesController {
     public ResponseEntity<List<SecurityPriceGetDTO>> getPrices(@PathVariable("symbol") String symbol,
                                                                @RequestParam("from") String from,
                                                                @RequestParam("to") String to) {
-        return ResponseEntity.ok(apiClient.getPrices(symbol, "45min", from, to));
+        return ResponseEntity.ok(apiClient.getPrices(symbol, "1hour", from, to));
     }
     @GetMapping("/{symbol}/dividends")
     public ResponseEntity<List<DividendsValueGetDTO>> getDividends(@PathVariable("symbol") String symbol,
