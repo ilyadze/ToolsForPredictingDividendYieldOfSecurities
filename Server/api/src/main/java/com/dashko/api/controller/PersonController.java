@@ -1,10 +1,9 @@
 package com.dashko.api.controller;
 
 import com.dashko.api.dto.person.PersonGetDTO;
-import com.dashko.api.mapping.PersonGetMapper;
+import com.dashko.api.mapping.person.PersonGetMapper;
 import com.dashko.common.service.person.PersonService;
 import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.ResponseEntity;

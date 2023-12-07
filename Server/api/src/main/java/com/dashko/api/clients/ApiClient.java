@@ -4,17 +4,20 @@ import com.dashko.api.dto.charts.DividendsApiResponse;
 import com.dashko.api.dto.charts.SecurityPriceGetDTO;
 import com.dashko.api.dto.news.NewsApiResponse;
 import com.dashko.api.dto.news.NewsGetDTO;
+import com.dashko.api.dto.securities.ActualPriceDTO;
 import com.dashko.api.dto.securities.SecuritiesGetDTO;
 import com.dashko.api.dto.securities.SecuritiesInfoDTO;
 import com.dashko.api.dto.securities.SecuritiesSearchDTO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
@@ -90,5 +93,16 @@ public class ApiClient {
                         new ParameterizedTypeReference<DividendsApiResponse>() {})
                 .getBody();
     }
+
+    public Double getPrice(String symbol) {
+        return Objects.requireNonNull(restTemplate.exchange(URL + "/v3/quote-short/"
+                                + symbol + "?" + API_TOKEN,
+                        HttpMethod.GET,
+                        null,
+                        new ParameterizedTypeReference<List<ActualPriceDTO>>() {
+                        })
+                .getBody()).stream().findFirst().get().getPrice();
+    }
+
 }
 

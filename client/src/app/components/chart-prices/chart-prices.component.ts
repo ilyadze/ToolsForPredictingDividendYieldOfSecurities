@@ -14,7 +14,7 @@ export class ChartPricesComponent implements OnInit{
   chart: Chart;
   prices: SecurityPriceGetDTO[];
   startDate: Date = new Date('2023-11-05');
-  endDate: Date = new Date('2023-12-03');
+  endDate: Date = new Date();
 
   constructor(private httpClientService: SecuritiesService) {
   }

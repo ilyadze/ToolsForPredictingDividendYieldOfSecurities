@@ -17,10 +17,10 @@ export class AuthenticationService {
       .post<any>(this.base_url  + '/login', {email , password })
       .pipe(
         map(userData => {
-          sessionStorage.setItem('email', email);
+          localStorage.setItem('email', email);
           let tokenStr = userData.token;
-          sessionStorage.setItem('token', tokenStr);
-          sessionStorage.setItem('userId', userData.userId);
+          localStorage.setItem('token', tokenStr);
+          localStorage.setItem('userId', userData.userId);
           return userData;
         })
       );
@@ -37,12 +37,13 @@ export class AuthenticationService {
 
 
   isUserLoggedIn() {
-    let user = sessionStorage.getItem('email');
+    let user = localStorage.getItem('email');
     return !(user === null);
   }
 
   logOut() {
-    sessionStorage.removeItem('username');
-    sessionStorage.removeItem('userId');
+    localStorage.removeItem('email');
+    localStorage.removeItem('userId');
+      localStorage.removeItem('token');
   }
 }

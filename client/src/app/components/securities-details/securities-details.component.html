@@ -1,9 +1,10 @@
 <!-- your-component.component.html -->
 <mat-card *ngIf="securitiesInfo">
   <mat-card-header>
-    <img  mat-card-avatar [src]="securitiesInfo.image" alt="Logo">
+    <img  mat-card-avatar [src]="securitiesInfo.image" alt="Logo" style="background-color: gainsboro">
     <mat-card-title>{{ securitiesInfo.companyName }}</mat-card-title>
     <mat-card-subtitle>Symbol: {{ securitiesInfo.symbol }}</mat-card-subtitle>
+    <button mat-flat-button (click)="addToWallet()">Add to wallet</button>
   </mat-card-header>
 
   <mat-card-content>

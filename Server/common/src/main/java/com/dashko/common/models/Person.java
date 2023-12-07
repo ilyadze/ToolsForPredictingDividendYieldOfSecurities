@@ -9,6 +9,7 @@ import lombok.experimental.FieldDefaults;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 import java.sql.Timestamp;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -49,6 +50,9 @@ public class Person {
     Timestamp createdAt;
     Timestamp updatedAt;
     String activationCode;
+
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+    private List<Security> securities;
 
     @ToString.Include(name = "password")
     private String maskPassword() {

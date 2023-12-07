@@ -3,7 +3,7 @@ package com.dashko.api.controller;
 import com.dashko.api.dto.auth.AuthRequestDTO;
 import com.dashko.api.dto.auth.AuthResponseDTO;
 import com.dashko.api.dto.person.PersonCreateDTO;
-import com.dashko.api.mapping.PersonMapper;
+import com.dashko.api.mapping.person.PersonMapper;
 import com.dashko.api.security.SecurityService;
 import com.dashko.common.models.Person;
 import com.dashko.common.service.person.IPersonService;
@@ -16,7 +16,6 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

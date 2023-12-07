@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {SecuritiesService} from "../../services/securities.service";
 import {SecuritiesInfoDTO} from "../../models/securities/SecuritiesInfoDTO";
 import {ActivatedRoute} from "@angular/router";
+import {WalletService} from "../../services/wallet.service";
+import {WalletSecuritiesAddDTO} from "../../models/wallet/WalletSecuritiesAddDTO";
 
 @Component({
   selector: 'app-securities-details',
@@ -15,7 +17,8 @@ export class SecuritiesDetailsComponent implements OnInit{
   securitiesInfo: SecuritiesInfoDTO;
 
   constructor(private securitiesService: SecuritiesService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private walletService: WalletService) {
 
   }
 
@@ -30,6 +33,17 @@ export class SecuritiesDetailsComponent implements OnInit{
 
   getTimeLoaded(index: number) {
     return new Date();
+  }
+
+  addToWallet() {
+    let security = {
+      name: this.securitiesInfo.companyName, // Используем поле companyName из SecuritiesInfoDTO
+      symbol: this.securitiesInfo.symbol,
+      price: parseFloat(this.securitiesInfo.price), // Преобразуем строку в число
+      currency: this.securitiesInfo.currency,
+      quantity: 1,
+    }
+    this.walletService.addSecurities(security);
   }
 
 }

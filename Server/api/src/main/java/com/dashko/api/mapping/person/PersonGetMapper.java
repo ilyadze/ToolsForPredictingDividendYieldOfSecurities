@@ -1,4 +1,4 @@
-package com.dashko.api.mapping;
+package com.dashko.api.mapping.person;
 
 import com.dashko.api.dto.person.PersonCreateDTO;
 import com.dashko.api.dto.person.PersonGetDTO;
