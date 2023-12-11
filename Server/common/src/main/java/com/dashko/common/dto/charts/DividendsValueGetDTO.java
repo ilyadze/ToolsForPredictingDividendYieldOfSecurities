@@ -1,12 +1,9 @@
-package com.dashko.api.dto.securities;
+package com.dashko.common.dto.charts;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.math.BigDecimal;
-
-@Data
 @Builder
 @Getter
 @Setter
@@ -14,12 +11,10 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
+@ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class SecuritiesSearchDTO {
-    String symbol;
-    String name;
-    String currency;
-    String stockExchange;
-    String exchangeShortName;
-
+public class DividendsValueGetDTO {
+    String label;
+    String date;
+    Double dividend;
 }

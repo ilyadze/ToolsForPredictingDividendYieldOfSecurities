@@ -1,9 +1,11 @@
-package com.dashko.api.dto.charts;
+package com.dashko.common.dto.news;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
+
+@Data
 @Builder
 @Getter
 @Setter
@@ -11,10 +13,14 @@ import lombok.experimental.FieldDefaults;
 @AllArgsConstructor
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-@ToString
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class DividendsValueGetDTO {
-    String label;
+public class NewsGetDTO {
+    String title;
     String date;
-    Double dividend;
+    String content;
+    String tickers;
+    String image;
+    String link;
+    String author;
+    String site;
 }

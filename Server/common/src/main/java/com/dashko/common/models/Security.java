@@ -5,6 +5,8 @@ import lombok.*;
 import lombok.experimental.FieldDefaults;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Builder(toBuilder = true)
@@ -26,7 +28,10 @@ public class Security {
     String name;
     String symbol;
     Double totalPrice;
+    Integer totalQuantity;
     String currency;
+//    @OneToMany(mappedBy = "security", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<SecurityPurchase> purchases = new ArrayList<>();
     Double price;
     Integer quantity;
     String dateOfPurchase;

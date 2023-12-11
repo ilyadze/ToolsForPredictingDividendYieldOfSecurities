@@ -1,7 +1,7 @@
 package com.dashko.api.controller;
 
-import com.dashko.api.dto.person.PersonGetDTO;
 import com.dashko.api.mapping.person.PersonGetMapper;
+import com.dashko.common.dto.person.PersonGetDTO;
 import com.dashko.common.service.person.PersonService;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;

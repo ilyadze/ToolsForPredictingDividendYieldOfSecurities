@@ -1,4 +1,4 @@
-package com.dashko.api.dto.charts;
+package com.dashko.common.dto.charts;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

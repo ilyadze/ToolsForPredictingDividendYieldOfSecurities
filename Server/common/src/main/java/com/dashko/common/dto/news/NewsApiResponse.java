@@ -1,13 +1,11 @@
-package com.dashko.api.dto.securities;
+package com.dashko.common.dto.news;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.util.List;
 
-@Data
 @Builder
 @Getter
 @Setter
@@ -16,11 +14,9 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class SecuritiesGetDTO {
-    String symbol;
-    String name;
-    String exchange;
-    String exchangeShortName;
-    BigDecimal price;
-    String type;
+public class NewsApiResponse {
+    List<NewsGetDTO> content;
+
+    Integer totalPages;
+
 }

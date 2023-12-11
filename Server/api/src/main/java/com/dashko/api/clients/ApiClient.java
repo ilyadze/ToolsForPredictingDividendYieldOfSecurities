@@ -1,13 +1,13 @@
 package com.dashko.api.clients;
 
-import com.dashko.api.dto.charts.DividendsApiResponse;
-import com.dashko.api.dto.charts.SecurityPriceGetDTO;
-import com.dashko.api.dto.news.NewsApiResponse;
-import com.dashko.api.dto.news.NewsGetDTO;
-import com.dashko.api.dto.securities.ActualPriceDTO;
-import com.dashko.api.dto.securities.SecuritiesGetDTO;
-import com.dashko.api.dto.securities.SecuritiesInfoDTO;
-import com.dashko.api.dto.securities.SecuritiesSearchDTO;
+
+import com.dashko.common.dto.charts.DividendsApiResponse;
+import com.dashko.common.dto.charts.SecurityPriceGetDTO;
+import com.dashko.common.dto.news.NewsApiResponse;
+import com.dashko.common.dto.securities.ActualPriceDTO;
+import com.dashko.common.dto.securities.SecuritiesGetDTO;
+import com.dashko.common.dto.securities.SecuritiesInfoDTO;
+import com.dashko.common.dto.securities.SecuritiesSearchDTO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.ParameterizedTypeReference;

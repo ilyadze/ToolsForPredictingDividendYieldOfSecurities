@@ -25,7 +25,7 @@ public class SecuritiesService implements ISecuritiesService {
             // Если Security существует, обновляем его поля
             Security security = existingSecurity.get();
             security.setTotalPrice(security.getTotalPrice() + newSecutiry.getPrice() * newSecutiry.getQuantity()); // увеличиваем стоимость
-            security.setQuantity(security.getQuantity() + newSecutiry.getQuantity()); // увеличиваем количество
+            security.setTotalQuantity(security.getTotalQuantity() + newSecutiry.getTotalQuantity()); // увеличиваем количество
             securityRepository.save(security);
         } else {
             // Если Security не существует, создаем новый

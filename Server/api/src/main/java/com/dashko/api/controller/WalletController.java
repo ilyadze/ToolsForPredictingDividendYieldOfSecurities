@@ -1,10 +1,10 @@
 package com.dashko.api.controller;
 
 import com.dashko.api.clients.ApiClient;
-import com.dashko.api.dto.wallet.WalletSecurityAddDTO;
-import com.dashko.api.dto.wallet.WalletSecurityGetDTO;
 import com.dashko.api.mapping.security.SecuritiesGetMapper;
 import com.dashko.api.mapping.security.SecuritiesMapper;
+import com.dashko.common.dto.wallet.WalletSecurityAddDTO;
+import com.dashko.common.dto.wallet.WalletSecurityGetDTO;
 import com.dashko.common.models.Person;
 import com.dashko.common.service.person.IPersonService;
 import com.dashko.common.service.security.ISecuritiesService;
@@ -48,7 +48,6 @@ public class WalletController {
         Long personId = personService.getPersonByEmail(email).getId();
         List<WalletSecurityGetDTO> securities = securityService.getPersonSecurities(personId)
                 .stream().map(security -> getMapper.map(security)).toList();
-        DecimalFormat decimalFormat = new DecimalFormat("#.###");
         securities.forEach(element -> {
             element.setActualPrice(apiClient.getPrice(element.getSymbol()));
             element.setPriceChange(((element.getActualPrice() - element.getPrice())*100/ element.getPrice()));

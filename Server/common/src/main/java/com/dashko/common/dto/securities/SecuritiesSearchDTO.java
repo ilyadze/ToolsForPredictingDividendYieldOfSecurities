@@ -1,4 +1,4 @@
-package com.dashko.api.dto.securities;
+package com.dashko.common.dto.securities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
@@ -13,8 +13,11 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class ActualPriceDTO {
+public class SecuritiesSearchDTO {
     String symbol;
-    Double price;
-    Integer volume;
+    String name;
+    String currency;
+    String stockExchange;
+    String exchangeShortName;
+
 }

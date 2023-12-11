@@ -1,4 +1,4 @@
-package com.dashko.api.dto.wallet;
+package com.dashko.common.dto.securities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
@@ -13,13 +13,8 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class WalletSecurityGetDTO {
-    String name;
+public class ActualPriceDTO {
     String symbol;
     Double price;
-    Double actualPrice;
-    Double totalPrice;
-    Double priceChange;
-    String currency;
-    Integer quantity;
+    Integer volume;
 }

@@ -1,4 +1,4 @@
-package com.dashko.api.dto.securities;
+package com.dashko.common.dto.securities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;

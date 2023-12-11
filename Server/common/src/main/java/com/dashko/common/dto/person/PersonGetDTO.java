@@ -1,14 +1,14 @@
-package com.dashko.api.dto.person;
+package com.dashko.common.dto.person;
 
 import com.dashko.common.models.enums.Role;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import jakarta.persistence.*;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.experimental.FieldDefaults;
 
-import java.sql.Timestamp;
 import java.util.Set;
 
 @Data

@@ -1,11 +1,10 @@
-package com.dashko.api.dto.news;
+package com.dashko.common.dto.wallet;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.util.List;
-
+@Data
 @Builder
 @Getter
 @Setter
@@ -14,9 +13,13 @@ import java.util.List;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class NewsApiResponse {
-    List<NewsGetDTO> content;
-
-    Integer totalPages;
-
+public class WalletSecurityGetDTO {
+    String name;
+    String symbol;
+    Double price;
+    Double actualPrice;
+    Double totalPrice;
+    Double priceChange;
+    String currency;
+    Integer quantity;
 }

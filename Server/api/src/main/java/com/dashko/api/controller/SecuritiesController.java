@@ -2,13 +2,12 @@ package com.dashko.api.controller;
 
 
 import com.dashko.api.clients.ApiClient;
-import com.dashko.api.dto.charts.DividendsValueGetDTO;
-import com.dashko.api.dto.charts.SecurityPriceGetDTO;
-import com.dashko.api.dto.news.NewsApiResponse;
-import com.dashko.api.dto.news.NewsGetDTO;
-import com.dashko.api.dto.securities.SecuritiesGetDTO;
-import com.dashko.api.dto.securities.SecuritiesInfoDTO;
-import com.dashko.api.dto.securities.SecuritiesSearchDTO;
+import com.dashko.common.dto.charts.DividendsValueGetDTO;
+import com.dashko.common.dto.charts.SecurityPriceGetDTO;
+import com.dashko.common.dto.news.NewsApiResponse;
+import com.dashko.common.dto.securities.SecuritiesGetDTO;
+import com.dashko.common.dto.securities.SecuritiesInfoDTO;
+import com.dashko.common.dto.securities.SecuritiesSearchDTO;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -29,7 +28,7 @@ public class SecuritiesController {
     ApiClient apiClient;
 
     @GetMapping("")
-    public ResponseEntity<List<SecuritiesGetDTO>> getSecurities(@RequestParam("from") Integer fromIndex,@RequestParam("to") Integer toIndex) {
+    public ResponseEntity<List<SecuritiesGetDTO>> getSecurities(@RequestParam("from") Integer fromIndex, @RequestParam("to") Integer toIndex) {
         return ResponseEntity.ok(apiClient.getSecurities().subList(fromIndex, toIndex));
     }
 

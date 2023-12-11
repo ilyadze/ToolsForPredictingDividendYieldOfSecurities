@@ -1,10 +1,10 @@
 package com.dashko.api.controller;
 
-import com.dashko.api.dto.auth.AuthRequestDTO;
-import com.dashko.api.dto.auth.AuthResponseDTO;
-import com.dashko.api.dto.person.PersonCreateDTO;
 import com.dashko.api.mapping.person.PersonMapper;
 import com.dashko.api.security.SecurityService;
+import com.dashko.common.dto.auth.AuthRequestDTO;
+import com.dashko.common.dto.auth.AuthResponseDTO;
+import com.dashko.common.dto.person.PersonCreateDTO;
 import com.dashko.common.models.Person;
 import com.dashko.common.service.person.IPersonService;
 import io.swagger.v3.oas.annotations.Operation;
