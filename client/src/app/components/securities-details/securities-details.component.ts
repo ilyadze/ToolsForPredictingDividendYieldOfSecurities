@@ -42,6 +42,7 @@ export class SecuritiesDetailsComponent implements OnInit{
       price: parseFloat(this.securitiesInfo.price), // Преобразуем строку в число
       currency: this.securitiesInfo.currency,
       quantity: 1,
+      dateOfPurchase: '',
     }
     this.walletService.addSecurities(security);
   }

@@ -12,6 +12,6 @@ export class PersonService {
   constructor(private httpClient: HttpClient) { }
 
   getPerson() {
-    return this.httpClient.get<PersonGetDTO>(this.base_url + '/' + sessionStorage.getItem('email'));
+    return this.httpClient.get<PersonGetDTO>(this.base_url + '/' + localStorage.getItem('email'));
   }
 }

@@ -6,3 +6,11 @@
 mat-card {
     height: 90%;
 }
+
+.chart {
+    width: 50%;
+}
+
+mat-card-content {
+    display: flex;
+}

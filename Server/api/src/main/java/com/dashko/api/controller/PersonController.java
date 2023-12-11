@@ -23,8 +23,6 @@ public class PersonController {
 
     @GetMapping("/{email}")
     public ResponseEntity<PersonGetDTO> getPerson(@PathVariable String email) {
-        System.out.println(email);
-        System.out.println(personGetMapper.map(personService.getPersonByEmail(email)));
         return ResponseEntity.ok(personGetMapper.map(personService.getPersonByEmail(email)));
     }
 }

@@ -32,8 +32,6 @@ public class WebSecurityConfig {
 
     final JwtRequestFilter jwtRequestFilter;
 
-     final String [] publicRoutes = {"/api/auth/register", "/api/auth/login"};
-
     @Bean
     public SecurityFilterChain securityWebFilterChain(HttpSecurity http, AuthenticationManager authenticationManager) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable)
@@ -52,9 +50,8 @@ public class WebSecurityConfig {
     }
 
     private AuthenticationFilter bearerAuthenticationFilter(AuthenticationManager authenticationManager) {
-        AuthenticationFilter bearerAuthenticationFilter = new AuthenticationFilter(authenticationManager,
+        return new AuthenticationFilter(authenticationManager,
                 new BearerTokenServerAuthenticationConverter(new JwtHandler(secret)));
-        return bearerAuthenticationFilter;
     }
 
 }

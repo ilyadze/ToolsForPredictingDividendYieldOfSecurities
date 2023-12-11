@@ -15,6 +15,15 @@ export class ChartPricesComponent implements OnInit{
   prices: SecurityPriceGetDTO[];
   startDate: Date = new Date('2023-11-05');
   endDate: Date = new Date();
+  timeRange = {
+    '30min': '30m',
+    '1hour': '1h',
+    '2hour': '2h',
+    '4hour': '4h',
+    '1day': 'd',
+    '1month': 'm',
+  }
+  selectedTimeRange: string = '1month';
 
   constructor(private httpClientService: SecuritiesService) {
   }
@@ -27,6 +36,7 @@ export class ChartPricesComponent implements OnInit{
       data: {
         labels: this.prices.map(item => item.date).reverse(),
         datasets: [{
+          label: this.someData,
           data: this.prices.map(item => item.high).reverse(),
           // backgroundColor: ['red', 'green', 'blue'],
         }],
@@ -35,7 +45,7 @@ export class ChartPricesComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.httpClientService.getSecuritiesPrices(this.someData, this.startDate, this.endDate).subscribe(result => {
+    this.httpClientService.getSecuritiesPrices(this.someData, this.startDate, this.endDate, this.selectedTimeRange).subscribe(result => {
       this.prices = result;
       this.renderChart();
     });
@@ -51,7 +61,15 @@ export class ChartPricesComponent implements OnInit{
 
 
   addEvent() {
-    this.httpClientService.getSecuritiesPrices(this.someData, this.startDate, this.endDate).subscribe(result => {
+    this.updateChart();
+  }
+
+  onToggleButtonChange() {
+    this.updateChart();
+  }
+
+  updateChart() {
+    this.httpClientService.getSecuritiesPrices(this.someData, this.startDate, this.endDate, this.selectedTimeRange).subscribe(result => {
       this.prices = result;
       this.chart.data.labels =  result.map(item => item.date).reverse();
       this.chart.data.datasets[0].data = result.map(item => item.high).reverse();

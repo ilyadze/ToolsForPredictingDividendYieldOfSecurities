@@ -51,7 +51,7 @@ public class Person {
     Timestamp updatedAt;
     String activationCode;
 
-    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Security> securities;
 
     @ToString.Include(name = "password")

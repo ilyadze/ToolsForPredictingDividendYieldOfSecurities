@@ -19,6 +19,7 @@ export class ChartDividendComponent implements OnInit{
   endDate: Date = new Date();
   chart: Chart;
 
+
   constructor(private httpClientService: SecuritiesService) {
   }
 
@@ -30,6 +31,7 @@ export class ChartDividendComponent implements OnInit{
       data: {
         labels: this.dividends.map(item => item.label).reverse(),
         datasets: [{
+          label: this.someData,
           data: this.dividends.map(item => item.dividend).reverse(),
           // backgroundColor: ['red', 'green', 'blue'],
         }],
@@ -52,4 +54,6 @@ export class ChartDividendComponent implements OnInit{
       this.chart.update();
     });
   }
+
+  protected readonly Object = Object;
 }

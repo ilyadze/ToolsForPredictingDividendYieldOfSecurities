@@ -7,13 +7,16 @@
     </mat-card-header>
 
     <mat-card-content>
-                <div class="mat-grid-tile-content">
-                    <p>Email: {{person.email}}</p>
-                    <p>Firstname: {{person.firstname}}</p>
-                    <p>Lastname: {{person.lastname}}</p>
-                    <p>Role: {{person.role}}</p>
-
-                </div>
+        <div class="mat-grid-tile-content">
+            <p>Email: {{person.email}}</p>
+            <p>Firstname: {{person.firstname}}</p>
+            <p>Lastname: {{person.lastname}}</p>
+            <p>Role: {{person.role}}</p>
+        </div>
+        <div class="chart">
+            <p (click)="goToWalletPage()">Wallet</p>
+            <canvas #myChart></canvas>
+        </div>
     </mat-card-content>
 </mat-card>
 

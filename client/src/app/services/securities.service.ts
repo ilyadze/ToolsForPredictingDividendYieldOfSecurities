@@ -38,10 +38,11 @@ export class SecuritiesService {
   getSecuritiesNews(page:number): Observable<NewsApiResponse> {
     return this.httpClient.get<NewsApiResponse>(this.base_url + '/news?page=' + page);
   }
-  getSecuritiesPrices(symbol:string, from: Date, to: Date): Observable<SecurityPriceGetDTO[]> {
+  getSecuritiesPrices(symbol:string, from: Date, to: Date, range: string): Observable<SecurityPriceGetDTO[]> {
     return this.httpClient.get<SecurityPriceGetDTO[]>(this.base_url + '/' + symbol +
         '/price?from='+ this.formatDate(from) +
-        '&to='+ this.formatDate(to));
+        '&to='+ this.formatDate(to) +
+        '&range=' + range);
   }
 
   getSecuritiesDividends(symbol:string, from: Date, to: Date): Observable<SecurityDividendGetDTO[]> {

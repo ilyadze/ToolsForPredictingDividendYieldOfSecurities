@@ -24,5 +24,5 @@ public class SecurityPriceGetDTO {
     Double highPrice;
     @JsonProperty("close")
     Double closePrice;
-    Integer volume;
+    Long volume;
 }

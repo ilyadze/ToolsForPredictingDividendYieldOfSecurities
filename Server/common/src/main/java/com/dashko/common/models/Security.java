@@ -25,9 +25,9 @@ public class Security {
 
     String name;
     String symbol;
-    Double price;
     Double totalPrice;
     String currency;
+    Double price;
     Integer quantity;
     String dateOfPurchase;
 

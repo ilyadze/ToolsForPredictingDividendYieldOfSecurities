@@ -72,6 +72,10 @@ public class ApiClient {
 
 
     public List<SecurityPriceGetDTO> getPrices(String symbol, String time, String from, String to) {
+        System.out.println(URL + "/v3/historical-chart/" + time +
+                "/" + symbol +
+                "?from=" + from + "&to=" + to +
+                "&" + API_TOKEN);
         return restTemplate.exchange(URL + "/v3/historical-chart/" + time +
                                 "/" + symbol +
                                 "?from=" + from + "&to=" + to +

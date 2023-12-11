@@ -1,5 +1,26 @@
-<mat-card *ngFor="let security of securities" (click)="goToDetailPage(security.symbol)">
+<mat-card >
     <mat-card-header>
+        <h2>Wallet</h2>
+    </mat-card-header>
+
+    <mat-card-content>
+    </mat-card-content>
+</mat-card>
+
+<table matSort (matSortChange)="sortData($event)">
+    <tr>
+        <th mat-sort-header="name">Name</th>
+        <th mat-sort-header="symbol">Symbol</th>
+        <th mat-sort-header="price">Price</th>
+        <th mat-sort-header="actualPrice">Actual Price</th>
+        <th mat-sort-header="totalPrice">Total Price</th>
+        <th mat-sort-header="currency">Currency</th>
+        <th mat-sort-header="priceChange">Price change</th>
+        <th mat-sort-header="quantity">quantity</th>
+    </tr>
+</table>
+<mat-card *ngFor="let security of securities" >
+    <mat-card-header (click)="goToDetailPage(security.symbol)">
         <mat-card-title>{{security.name}}</mat-card-title>
         <mat-card-subtitle>{{security.symbol}}</mat-card-subtitle>
     </mat-card-header>
@@ -7,10 +28,13 @@
         <!-- Выведите другие свойства вашего объекта SecuritiesGetDTO -->
         <p>{{ security.price }}</p>
         <p>{{ security.actualPrice }}</p>
-        <p>{{ security.totalPrice }}</p>
+        <p>{{ security.totalPrice.toFixed(2) }}</p>
         <p>{{ security.currency }}</p>
-        <p>{{ security.priceChange }}</p>
+        <p>{{ security.priceChange.toFixed(3) }}</p>
         <p>{{ security.quantity }}</p>
+        <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="deleteSecurity(security.symbol)">
+            <mat-icon>delete</mat-icon>
+        </button>
         <!-- ... -->
     </mat-card-content>
 </mat-card>

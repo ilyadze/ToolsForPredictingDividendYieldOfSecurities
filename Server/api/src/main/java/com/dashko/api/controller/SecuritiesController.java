@@ -61,8 +61,9 @@ public class SecuritiesController {
     @GetMapping("/{symbol}/price")
     public ResponseEntity<List<SecurityPriceGetDTO>> getPrices(@PathVariable("symbol") String symbol,
                                                                @RequestParam("from") String from,
-                                                               @RequestParam("to") String to) {
-        return ResponseEntity.ok(apiClient.getPrices(symbol, "1hour", from, to));
+                                                               @RequestParam("to") String to,
+                                                               @RequestParam("range") String range) {
+        return ResponseEntity.ok(apiClient.getPrices(symbol, range, from, to));
     }
     @GetMapping("/{symbol}/dividends")
     public ResponseEntity<List<DividendsValueGetDTO>> getDividends(@PathVariable("symbol") String symbol,

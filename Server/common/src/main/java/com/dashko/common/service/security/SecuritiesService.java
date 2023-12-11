@@ -7,6 +7,7 @@ import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,8 +32,10 @@ public class SecuritiesService implements ISecuritiesService {
             Person person = new Person();
             person.setId(personId);
             Security security = new Security();
+            security.setName(newSecutiry.getName());
             security.setSymbol(newSecutiry.getSymbol());
             security.setCurrency(newSecutiry.getCurrency());
+            security.setDateOfPurchase(newSecutiry.getDateOfPurchase());
             security.setPrice(newSecutiry.getPrice());
             security.setTotalPrice(newSecutiry.getPrice() * newSecutiry.getQuantity());
             security.setQuantity(newSecutiry.getQuantity());
@@ -45,5 +48,13 @@ public class SecuritiesService implements ISecuritiesService {
     @Override
     public List<Security> getPersonSecurities(Long personId) {
         return securityRepository.findByPersonId(personId);
+    }
+
+    @Override
+    @Transactional
+    public void deleteSecurity(Person person, String symbol) {
+        if(securityRepository.existsByPersonIdAndSymbol(person.getId(), symbol)) {
+            securityRepository.deleteByPersonAndSymbol(person, symbol);
+        }
     }
 }

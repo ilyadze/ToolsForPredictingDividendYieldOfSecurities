@@ -4,6 +4,6 @@ export class WalletSecuritiesAddDTO {
     price: number;
     currency: string;
     quantity: number;
-
+    dateOfPurchase: string;
 
 }
