@@ -5,6 +5,7 @@ import com.dashko.api.clients.ApiClient;
 import com.dashko.common.dto.charts.DividendsValueGetDTO;
 import com.dashko.common.dto.charts.SecurityPriceGetDTO;
 import com.dashko.common.dto.news.NewsApiResponse;
+import com.dashko.common.dto.securities.FilterDTO;
 import com.dashko.common.dto.securities.SecuritiesGetDTO;
 import com.dashko.common.dto.securities.SecuritiesInfoDTO;
 import com.dashko.common.dto.securities.SecuritiesSearchDTO;
@@ -69,5 +70,10 @@ public class SecuritiesController {
                                                                    @RequestParam("from") String from,
                                                                    @RequestParam("to") String to) {
         return ResponseEntity.ok(apiClient.getDividends(symbol, from, to).getDividends());
+    }
+
+    @PostMapping("/filter")
+    public ResponseEntity<List<SecuritiesGetDTO>> getSecuritiesFilter(@RequestParam("from") Integer fromIndex, @RequestParam("to") Integer toIndex, @RequestBody FilterDTO filter) {
+        return ResponseEntity.ok(apiClient.filterSecurities(filter).subList(fromIndex, toIndex));
     }
 }

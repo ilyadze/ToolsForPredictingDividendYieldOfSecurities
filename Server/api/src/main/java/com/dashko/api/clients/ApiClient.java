@@ -4,33 +4,47 @@ package com.dashko.api.clients;
 import com.dashko.common.dto.charts.DividendsApiResponse;
 import com.dashko.common.dto.charts.SecurityPriceGetDTO;
 import com.dashko.common.dto.news.NewsApiResponse;
-import com.dashko.common.dto.securities.ActualPriceDTO;
-import com.dashko.common.dto.securities.SecuritiesGetDTO;
-import com.dashko.common.dto.securities.SecuritiesInfoDTO;
-import com.dashko.common.dto.securities.SecuritiesSearchDTO;
+import com.dashko.common.dto.securities.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class ApiClient {
 
     @Value("${api.url}")
-    private  String URL;
+    String URL;
     @Value("${api.token}")
-    private  String API_TOKEN;
+    String API_TOKEN;
     final RestTemplate restTemplate = new RestTemplate();
 
     @Cacheable("securitiesCache")
     public List<SecuritiesGetDTO> getSecurities() {
+        List<SecuritiesGetDTO> securitiesGetDTOList = restTemplate.exchange(URL + "/v3/stock/list" + "?" + API_TOKEN,
+                        org.springframework.http.HttpMethod.GET,
+                        null,
+                        new ParameterizedTypeReference<List<SecuritiesGetDTO>>() {})
+                .getBody();
+        return securitiesGetDTOList.stream()
+                .filter(security -> !"etf".equals(security.getType()))
+                .collect(Collectors.toList());
+
+    }
+
+    public List<SecuritiesGetDTO> getSecuritiesWithFilter() {
         List<SecuritiesGetDTO> securitiesGetDTOList = restTemplate.exchange(URL + "/v3/stock/list" + "?" + API_TOKEN,
                         org.springframework.http.HttpMethod.GET,
                         null,
@@ -72,10 +86,6 @@ public class ApiClient {
 
 
     public List<SecurityPriceGetDTO> getPrices(String symbol, String time, String from, String to) {
-        System.out.println(URL + "/v3/historical-chart/" + time +
-                "/" + symbol +
-                "?from=" + from + "&to=" + to +
-                "&" + API_TOKEN);
         return restTemplate.exchange(URL + "/v3/historical-chart/" + time +
                                 "/" + symbol +
                                 "?from=" + from + "&to=" + to +
@@ -108,5 +118,35 @@ public class ApiClient {
                 .getBody()).stream().findFirst().get().getPrice();
     }
 
+
+    public List<SecuritiesGetDTO> filterSecurities(FilterDTO filters) {
+        // Формируем параметры запроса
+        Map<String, Object> queryParams = new HashMap<>();
+        queryParams.put("sectors", String.join(",", filters.getSectors()));
+        queryParams.put("industries", String.join(",", filters.getIndustries()));
+        queryParams.put("countries", String.join(",", filters.getCountries()));
+        queryParams.put("priceMoreThan", filters.getPriceMoreThan());
+        queryParams.put("priceLowerThan", filters.getPriceLowerThan());
+
+
+        String urlWithParams = URL + "/v3/stock-screener" + buildQueryString(queryParams) + "&" + API_TOKEN;
+        return restTemplate.exchange(urlWithParams,
+                        HttpMethod.GET,
+                        null,
+                        new ParameterizedTypeReference<List<SecuritiesGetDTO>>() {})
+                .getBody();
+    }
+
+    // Вспомогательный метод для построения строки запроса
+    private String buildQueryString(Map<String, Object> queryParams) {
+        StringBuilder queryString = new StringBuilder();
+        queryString.append("?");
+        for (Map.Entry<String, Object> entry : queryParams.entrySet()) {
+            queryString.append(entry.getKey()).append("=").append(entry.getValue()).append("&");
+        }
+        // Удаляем последний символ "&"
+        queryString.deleteCharAt(queryString.length() - 1);
+        return queryString.toString();
+    }
 }
 

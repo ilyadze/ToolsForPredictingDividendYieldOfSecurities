@@ -11,7 +11,7 @@ import {Chart} from "chart.js";
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit{
+export class ProfileComponent {
   person: PersonGetDTO;
   @ViewChild('myChart') myChart!: ElementRef;
   securities: WalletSecurityGetDTO[];
@@ -21,12 +21,9 @@ export class ProfileComponent implements OnInit{
   constructor(private personService:PersonService,
               private walletService: WalletService,
               private router: Router) {
-  }
-
-  ngOnInit(): void {
-      this.personService.getPerson().subscribe(personInfo => {
-        this.person = personInfo;
-      });
+    this.personService.getPerson().subscribe(personInfo => {
+      this.person = personInfo;
+    });
     this.walletService.getSecurities().subscribe(result => {
       this.securities = result;
       this.renderChart();

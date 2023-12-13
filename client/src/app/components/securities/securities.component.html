@@ -1,5 +1,6 @@
 <app-securities-search></app-securities-search>
 <br>
+<app-filter (formDataEvent)="handleFormData($event)"></app-filter>
 <mat-list>
   <table matSort (matSortChange)="sortData($event)">
     <tr>

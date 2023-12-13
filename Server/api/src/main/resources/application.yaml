@@ -38,6 +38,9 @@ api:
   token: apikey=EklueuaDiiIs1JpIOeTMFgqQAfRra2an
   token_2: apikey=4f0212439d2fbcca3ab6d60c3f1d15a7
   token_3: apikey=ju4PSxzDgKLkx9Mw9JHAjQEDsxFfCBrC
+currency-api:
+  url: https://v6.exchangerate-api.com/v6/
+  token: adefc15712cfbc6e54ec0f52
 # ===============================
 # = JWT configurations
 # ===============================

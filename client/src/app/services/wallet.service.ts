@@ -3,6 +3,8 @@ import {HttpClient} from "@angular/common/http";
 import {WalletSecuritiesAddDTO} from "../models/wallet/WalletSecuritiesAddDTO";
 import {WalletSecurityGetDTO} from "../models/wallet/WalletSecurityGetDTO";
 import {formatDate} from "@angular/common";
+import {WalletInfoDTO} from "../models/wallet/WalletInfoDTO";
+import {Filters} from "../models/securities/Filters";
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +20,10 @@ export class WalletService {
 
   deleteSecurity(symbol: string) {
     return this.httpClient.delete(this.base_url + localStorage.getItem('email') + '/securities/' + symbol);
+  }
+
+  getWalletInfo() {
+    return this.httpClient.get<WalletInfoDTO>(this.base_url + localStorage.getItem('email') + '/securities/wallet');
   }
 
   addSecurities(securities: WalletSecuritiesAddDTO) {

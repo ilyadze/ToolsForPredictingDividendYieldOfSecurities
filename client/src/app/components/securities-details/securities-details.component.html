@@ -12,14 +12,12 @@
       <mat-grid-tile style=" height: 100%">
         <mat-tab-group>
           <mat-tab label="Prices">
-            <ng-template matTabContent>
               <app-chart-prices [someData]="symbol"></app-chart-prices>
-            </ng-template>
           </mat-tab>
           <mat-tab label="Dividends">
-            <ng-template matTabContent>
+<!--            <ng-template matTabContent>-->
               <app-chart-dividend [someData]="symbol"></app-chart-dividend>
-            </ng-template>
+<!--            </ng-template>-->
           </mat-tab>
 <!--          <mat-tab label="Third">-->
 <!--            <ng-template matTabContent>-->

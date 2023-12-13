@@ -1,5 +1,6 @@
 package com.dashko.common.dto.securities;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -17,6 +18,7 @@ import java.math.BigDecimal;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class SecuritiesGetDTO {
     String symbol;
+    @JsonAlias({"name", "companyName"})
     String name;
     String exchange;
     String exchangeShortName;

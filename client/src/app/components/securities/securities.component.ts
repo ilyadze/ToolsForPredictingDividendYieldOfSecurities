@@ -4,6 +4,8 @@ import {SecuritiesService} from "../../services/securities.service";
 import {SecuritiesGetDTO} from "../../models/securities/SecuritiesGetDTO";
 import {Router} from "@angular/router";
 import {Sort} from "@angular/material/sort";
+import {FormControl} from "@angular/forms";
+import {Filters} from "../../models/securities/Filters";
 
 
 @Component({
@@ -21,6 +23,9 @@ export class SecuritiesComponent implements OnInit{
   showFirstLastButtons = true;
 
   pageEvent: PageEvent;
+
+  filters: Filters;
+
 
 
   constructor(private securitiesService: SecuritiesService,
@@ -78,6 +83,14 @@ export class SecuritiesComponent implements OnInit{
           return 0;
       }
     });
+  }
+  handleFormData(formData: any) {
+    this.filters=formData;
+    let fromIndex = this.pageIndex * this.pageSize;
+    this.securitiesService.getFiltersData(fromIndex, fromIndex + this.pageSize, this.filters).subscribe(securities => {
+      this.securities = securities;
+    })
+    // Ваши действия с данными формы, например, отправка данных на сервер
   }
 }
 function compare(a: number | string, b: number | string, isAsc: boolean) {

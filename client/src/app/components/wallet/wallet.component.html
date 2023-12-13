@@ -1,9 +1,25 @@
-<mat-card >
+<mat-card class="wallet">
     <mat-card-header>
         <h2>Wallet</h2>
+        <mat-form-field>
+            <mat-label>Currency</mat-label>
+            <mat-select [formControl]="currencies">
+                <mat-option>None</mat-option>
+                <mat-option *ngFor="let topping of currenciesList" [value]="topping">{{topping}}</mat-option>
+            </mat-select>
+        </mat-form-field>
     </mat-card-header>
 
     <mat-card-content>
+        <div *ngIf="walletInfo">
+            <p>{{walletInfo.actualPrice}}</p>
+            <p>{{walletInfo.fullPrice}}</p>
+            <p *ngIf="walletInfo.actualPrice != 0">{{walletInfo.priceChange.toFixed(3)}}</p>
+            <p>{{walletInfo.totalSecurities}}</p>
+        </div>
+        <div>
+            <canvas #myChart></canvas>
+        </div>
     </mat-card-content>
 </mat-card>
 

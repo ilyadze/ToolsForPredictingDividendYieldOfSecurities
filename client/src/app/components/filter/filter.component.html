@@ -1,0 +1,54 @@
+<mat-expansion-panel>
+    <mat-expansion-panel-header>
+        Filters
+    </mat-expansion-panel-header>
+    <form [formGroup]="filterForm" (ngSubmit)="filterResults()">
+        <mat-form-field>
+            <mat-label>Sector</mat-label>
+            <mat-select [formControl]="sectors" multiple>
+                <mat-select-trigger>
+                    {{sectors.value?.[0] || ''}}
+                    <span *ngIf="(sectors.value?.length || 0) > 1" class="example-additional-selection">
+            (+{{(sectors.value?.length || 0) - 1}} {{sectors.value?.length === 2 ? 'other' : 'others'}})
+          </span>
+                </mat-select-trigger>
+                <mat-option *ngFor="let topping of sectorList" [value]="topping">{{topping}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>Industry</mat-label>
+            <mat-select [formControl]="industries" multiple>
+                <mat-select-trigger>
+                    {{industries.value?.[0] || ''}}
+                    <span *ngIf="(industries.value?.length || 0) > 1" class="example-additional-selection">
+                (+{{(industries.value?.length || 0) - 1}} {{industries.value?.length === 2 ? 'other' : 'others'}})
+          </span>
+                </mat-select-trigger>
+                <mat-option *ngFor="let topping of industryList" [value]="topping">{{topping}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label for="countries">Country</mat-label>
+            <mat-select [formControl]="countries" multiple>
+                <mat-select-trigger>
+                    {{countries.value?.[0] || ''}}
+                    <span *ngIf="(countries.value?.length || 0) > 1" class="example-additional-selection">
+            (+{{(countries.value?.length || 0) - 1}} {{countries.value?.length === 2 ? 'other' : 'others'}})
+          </span>
+                </mat-select-trigger>
+                <mat-option *ngFor="let topping of countryList" [value]="topping">{{topping}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label for="priceMoreThan">Price more than:</mat-label>
+            <input type="number" formControlName="priceMoreThan"  matInput/>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <mat-label for="priceLowerThan">Price lower than:</mat-label>
+            <input type="number" formControlName="priceLowerThan"  matInput/>
+        </mat-form-field>
+        <button mat-stroked-button>Apply</button>
+    </form>
+</mat-expansion-panel>
+
+

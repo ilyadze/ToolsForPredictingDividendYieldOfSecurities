@@ -9,6 +9,8 @@ import {NewsGetDTO} from "../models/news/NewsGetDTO";
 import {NewsApiResponse} from "../models/news/NewsApiResponse";
 import {SecurityPriceGetDTO} from "../models/charts/SecurityPriceGetDTO";
 import {SecurityDividendGetDTO} from "../models/charts/SecurityDividendGetDTO";
+import {Filters} from "../models/securities/Filters";
+import {WalletSecurityGetDTO} from "../models/wallet/WalletSecurityGetDTO";
 
 
 @Injectable({
@@ -21,6 +23,10 @@ export class SecuritiesService {
 
   getSecurities(fromIndex: number, toIndex: number) {
     return this.httpClient.get<SecuritiesGetDTO[]>(this.base_url + '?from=' + fromIndex + '&to=' + toIndex);
+  }
+
+  getFiltersData(fromIndex: number, toIndex: number, filters: Filters) {
+    return this.httpClient.post<SecuritiesGetDTO[]>(this.base_url + '/filter?from=' + fromIndex + '&to=' + toIndex, filters);
   }
 
   getSecuritiesInfo(symbol: string) {

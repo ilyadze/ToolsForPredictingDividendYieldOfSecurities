@@ -20,15 +20,14 @@ public class SecuritiesService implements ISecuritiesService {
     @Override
     public void addOrUpdateSecurity(Long personId, Security newSecutiry) {
         Optional<Security> existingSecurity = securityRepository.findByPersonIdAndSymbol(personId, newSecutiry.getSymbol());
-        System.out.println(existingSecurity);
         if (existingSecurity.isPresent()) {
             // Если Security существует, обновляем его поля
             Security security = existingSecurity.get();
+            System.out.println(security);
             security.setTotalPrice(security.getTotalPrice() + newSecutiry.getPrice() * newSecutiry.getQuantity()); // увеличиваем стоимость
-            security.setTotalQuantity(security.getTotalQuantity() + newSecutiry.getTotalQuantity()); // увеличиваем количество
+            security.setTotalQuantity(security.getTotalQuantity() + newSecutiry.getQuantity()); // увеличиваем количество
             securityRepository.save(security);
         } else {
-            // Если Security не существует, создаем новый
             Person person = new Person();
             person.setId(personId);
             Security security = new Security();
@@ -39,6 +38,7 @@ public class SecuritiesService implements ISecuritiesService {
             security.setPrice(newSecutiry.getPrice());
             security.setTotalPrice(newSecutiry.getPrice() * newSecutiry.getQuantity());
             security.setQuantity(newSecutiry.getQuantity());
+            security.setTotalQuantity(newSecutiry.getQuantity());
             security.setPerson(person);
 
             securityRepository.save(security);
