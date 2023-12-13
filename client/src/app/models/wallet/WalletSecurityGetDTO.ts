@@ -6,5 +6,5 @@ export class WalletSecurityGetDTO {
     totalPrice: number;
     priceChange: number;
     currency: string;
-    quantity: number;
+    totalQuantity: number;
 }

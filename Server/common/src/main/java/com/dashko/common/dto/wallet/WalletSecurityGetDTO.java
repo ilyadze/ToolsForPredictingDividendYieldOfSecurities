@@ -21,5 +21,6 @@ public class WalletSecurityGetDTO {
     Double totalPrice;
     Double priceChange;
     String currency;
-    Integer quantity;
+    Integer totalQuantity;
+
 }

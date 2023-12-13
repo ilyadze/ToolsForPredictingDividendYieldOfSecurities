@@ -90,7 +90,7 @@ export class WalletComponent implements OnInit{
         case 'priceChange':
           return compare(a.priceChange, b.priceChange, isAsc);
         case 'quantity':
-          return compare(a.quantity, b.quantity, isAsc);
+          return compare(a.totalQuantity, b.totalQuantity, isAsc);
         default:
           return 0;
       }
