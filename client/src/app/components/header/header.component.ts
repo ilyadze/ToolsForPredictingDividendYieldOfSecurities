@@ -30,6 +30,10 @@ export class HeaderComponent implements OnInit{
     this.router.navigate(['profile']);
   }
 
+  goToDividends() {
+    this.router.navigate(['dividends']);
+  }
+
   logout(): void {
     this.authenticationService.logOut();
     this.router.navigate(['/login']);

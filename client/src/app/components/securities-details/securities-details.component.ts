@@ -12,9 +12,15 @@ import {WalletSecuritiesAddDTO} from "../../models/wallet/WalletSecuritiesAddDTO
 })
 export class SecuritiesDetailsComponent implements OnInit{
 
+  showElements = false;
   symbol: string;
+  fieldValue: number;
 
   securitiesInfo: SecuritiesInfoDTO;
+
+  toggleElements() {
+    this.showElements = !this.showElements;
+  }
 
   constructor(private securitiesService: SecuritiesService,
               private route: ActivatedRoute,
@@ -35,13 +41,13 @@ export class SecuritiesDetailsComponent implements OnInit{
     return new Date();
   }
 
-  addToWallet() {
+  addToWallet(quantity: number) {
     let security = {
       name: this.securitiesInfo.companyName, // Используем поле companyName из SecuritiesInfoDTO
       symbol: this.securitiesInfo.symbol,
       price: parseFloat(this.securitiesInfo.price), // Преобразуем строку в число
       currency: this.securitiesInfo.currency,
-      quantity: 1,
+      quantity: quantity,
       dateOfPurchase: '',
     }
     this.walletService.addSecurities(security);

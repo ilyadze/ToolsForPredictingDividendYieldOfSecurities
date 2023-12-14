@@ -8,7 +8,7 @@
          [matAutocomplete]="auto">
   <mat-autocomplete  #auto="matAutocomplete">
     <mat-option *ngFor="let result of searchResults$ | async" [value]="result" (click)="goToDetailPage(result.symbol)">
-      {{ result.name }} - {{result.stockExchange}}
+      {{ result.name }} - {{result.symbol}} - {{result.stockExchange}}
     </mat-option>
   </mat-autocomplete>
 </mat-form-field>

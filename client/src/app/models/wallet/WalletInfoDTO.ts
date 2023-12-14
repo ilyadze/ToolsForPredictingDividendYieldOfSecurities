@@ -3,4 +3,5 @@ export class WalletInfoDTO {
     actualPrice: number;
     priceChange: number;
     totalSecurities: number;
+    currency: string;
 }

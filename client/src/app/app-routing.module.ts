@@ -9,6 +9,7 @@ import {NewsComponent} from "./components/news/news.component";
 import {WalletComponent} from "./components/wallet/wallet.component";
 import {ActivationComponent} from "./components/activation/activation.component";
 import {AuthGaurdService} from "./services/auth-gaurd.service";
+import {DividendsComponent} from "./components/dividends/dividends.component";
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'securities/:symbol', component: SecuritiesDetailsComponent},
   {path: 'news', component: NewsComponent},
   {path: 'wallet', component: WalletComponent, canActivate: [AuthGaurdService] },
+  {path: 'dividends', component: DividendsComponent, canActivate: [AuthGaurdService] },
   { path: 'activate/:activationCode', component: ActivationComponent },
   { path: '**',redirectTo: 'securities', pathMatch: 'full'}
 ];

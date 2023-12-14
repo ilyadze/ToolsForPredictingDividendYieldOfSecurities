@@ -77,7 +77,7 @@ public class ApiClient {
 
     @Cacheable("newsCache")
     public NewsApiResponse getNews(Integer page) {
-        return restTemplate.exchange(URL + "/v3/fmp/articles?page=" + page + "&size=10" + "&" + API_TOKEN,
+        return restTemplate.exchange(URL + "/v3/fmp/articles?page=" + page + "&size=12" + "&" + API_TOKEN,
                         org.springframework.http.HttpMethod.GET,
                         null,
                         new ParameterizedTypeReference<NewsApiResponse>() {})

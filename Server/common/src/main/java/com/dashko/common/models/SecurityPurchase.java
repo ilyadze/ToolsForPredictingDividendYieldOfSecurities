@@ -1,8 +1,17 @@
 package com.dashko.common.models;
 
 import jakarta.persistence.*;
+import lombok.*;
+import lombok.experimental.FieldDefaults;
 
 @Entity
+@Builder(toBuilder = true)
+@Setter
+@Getter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class SecurityPurchase {
     @Id
     @SequenceGenerator(name = "person_seq",
@@ -10,13 +19,13 @@ public class SecurityPurchase {
             initialValue = 1, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_seq")
     @Column(name = "id", nullable = false)
-    private Long id;
+    Long id;
 
-    private Double purchasePrice;
-    private Integer quantity;
-    private String purchaseDate;
+    Double purchasePrice;
+    Integer quantity;
+    String purchaseDate;
 
     @ManyToOne
     @JoinColumn(name = "security_id")
-    private Security security;
+    Security security;
 }

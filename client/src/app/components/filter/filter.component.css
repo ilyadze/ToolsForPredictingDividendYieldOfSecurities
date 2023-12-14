@@ -1,0 +1,5 @@
+mat-expansion-panel {
+    width: 100%;
+    max-width: 800px; /* Пример ширины, установите подходящее значение */
+    margin: 0 auto;
+}

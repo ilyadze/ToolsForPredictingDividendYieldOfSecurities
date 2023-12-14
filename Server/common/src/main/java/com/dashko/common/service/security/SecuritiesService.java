@@ -1,7 +1,10 @@
 package com.dashko.common.service.security;
 
+import com.dashko.common.dto.wallet.WalletSecurityAddDTO;
 import com.dashko.common.models.Person;
 import com.dashko.common.models.Security;
+import com.dashko.common.models.SecurityPurchase;
+import com.dashko.common.repository.PurchaseRepository;
 import com.dashko.common.repository.SecurityRepository;
 import lombok.AccessLevel;
 import lombok.experimental.FieldDefaults;
@@ -17,13 +20,13 @@ import java.util.Optional;
 public class SecuritiesService implements ISecuritiesService {
     @Autowired
     SecurityRepository securityRepository;
+    @Autowired
+    PurchaseRepository purchaseRepository;
     @Override
-    public void addOrUpdateSecurity(Long personId, Security newSecutiry) {
+    public void addOrUpdateSecurity(Long personId, WalletSecurityAddDTO newSecutiry) {
         Optional<Security> existingSecurity = securityRepository.findByPersonIdAndSymbol(personId, newSecutiry.getSymbol());
         if (existingSecurity.isPresent()) {
-            // Если Security существует, обновляем его поля
             Security security = existingSecurity.get();
-            System.out.println(security);
             security.setTotalPrice(security.getTotalPrice() + newSecutiry.getPrice() * newSecutiry.getQuantity()); // увеличиваем стоимость
             security.setTotalQuantity(security.getTotalQuantity() + newSecutiry.getQuantity()); // увеличиваем количество
             securityRepository.save(security);
@@ -34,15 +37,30 @@ public class SecuritiesService implements ISecuritiesService {
             security.setName(newSecutiry.getName());
             security.setSymbol(newSecutiry.getSymbol());
             security.setCurrency(newSecutiry.getCurrency());
-            security.setDateOfPurchase(newSecutiry.getDateOfPurchase());
             security.setPrice(newSecutiry.getPrice());
             security.setTotalPrice(newSecutiry.getPrice() * newSecutiry.getQuantity());
-            security.setQuantity(newSecutiry.getQuantity());
             security.setTotalQuantity(newSecutiry.getQuantity());
             security.setPerson(person);
 
             securityRepository.save(security);
         }
+        Optional<SecurityPurchase> purchase = purchaseRepository.findBySecurityId(existingSecurity.get().getId());
+        if(purchase.isPresent() & purchase.get().getPurchaseDate().equals(newSecutiry.getDateOfPurchase())) {
+            SecurityPurchase updatePurchase = purchase.get();
+            updatePurchase.setSecurity(securityRepository.findByPersonIdAndSymbol(personId, newSecutiry.getSymbol()).get());
+            updatePurchase.setPurchaseDate(newSecutiry.getDateOfPurchase());
+            updatePurchase.setQuantity(newSecutiry.getQuantity() + updatePurchase.getQuantity());
+            updatePurchase.setPurchasePrice(newSecutiry.getPrice());
+            purchaseRepository.save(updatePurchase);
+        } else {
+            SecurityPurchase newPurchase = new SecurityPurchase();
+            newPurchase.setSecurity(securityRepository.findByPersonIdAndSymbol(personId, newSecutiry.getSymbol()).get());
+            newPurchase.setPurchaseDate(newSecutiry.getDateOfPurchase());
+            newPurchase.setQuantity(newSecutiry.getQuantity());
+            newPurchase.setPurchasePrice(newSecutiry.getPrice());
+            purchaseRepository.save(newPurchase);
+        }
+
     }
 
     @Override

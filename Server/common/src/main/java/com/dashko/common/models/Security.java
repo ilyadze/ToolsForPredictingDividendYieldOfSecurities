@@ -30,11 +30,9 @@ public class Security {
     Double totalPrice;
     Integer totalQuantity;
     String currency;
-//    @OneToMany(mappedBy = "security", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<SecurityPurchase> purchases = new ArrayList<>();
+    @OneToMany(mappedBy = "security", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SecurityPurchase> purchases = new ArrayList<>();
     Double price;
-    Integer quantity;
-    String dateOfPurchase;
 
     @ManyToOne
     @JoinColumn(name = "person_id")

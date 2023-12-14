@@ -2,6 +2,10 @@
  display: block;
 }
 
+.name {
+    width: 300px;
+}
+
 mat-card {
     display: flex;
     flex-direction: row;
@@ -14,9 +18,112 @@ mat-card-content {
 }
 
 mat-card-content p{
-    margin: 0 20px;
+    width: 100%;
+    max-width: 800px; /* Пример ширины, установите подходящее значение */
+    margin: 0 auto;
 }
 
 img {
     height: 35px;
 }
+
+/* Добавьте следующие стили в ваш стилевой файл */
+
+/* Стили для основного контейнера */
+.mat-card.wallet {
+    margin: 20px;
+}
+
+/* Стили для заголовка кошелька */
+.mat-card.wallet mat-card-header {
+    background-color: #2196F3; /* Цвет фона заголовка, замените на свой */
+    color: #ffffff; /* Цвет текста заголовка, замените на свой */
+}
+
+/* Стили для h2 внутри заголовка кошелька */
+.mat-card.wallet mat-card-header h2 {
+    margin: 0;
+}
+
+/* Стили для формы выбора валюты внутри заголовка кошелька */
+.mat-card.wallet mat-card-header mat-form-field {
+    margin-top: 10px;
+}
+
+/* Стили для контента внутри карточки кошелька */
+.mat-card.wallet mat-card-content {
+    padding: 16px;
+}
+
+/* Стили для параграфов внутри контента кошелька */
+.mat-card.wallet mat-card-content p {
+    margin-bottom: 10px;
+}
+
+/* Стили для таблицы */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+/* Стили для строк таблицы */
+tr {
+    display: block;
+    /*margin-bottom: 10px;*/
+    border: 1px solid #ddd;
+    width: 100%;
+
+}
+
+/* Стили для ячеек таблицы */
+th, td {
+    border: none;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+    width: 15%;
+}
+
+.wallet-header-content {
+    display: flex;
+}
+
+
+
+/* Стили для карточек ценных бумаг */
+.mat-card.securities {
+    width: 48%; /* 48%, чтобы уместить 2 карточки в ряд, можно настроить под свои нужды */
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для заголовка карточек ценных бумаг */
+.mat-card.securities mat-card-header {
+    background-color: #2196F3; /* Цвет фона заголовка, замените на свой */
+    color: #ffffff; /* Цвет текста заголовка, замените на свой */
+}
+
+/* Стили для заголовка и подзаголовка внутри mat-card-header ценных бумаг */
+.mat-card.securities mat-card-header mat-card-title,
+.mat-card.securities mat-card-header mat-card-subtitle {
+    padding: 8px;
+}
+
+/* Стили для контента внутри карточек ценных бумаг */
+.mat-card.securities mat-card-content {
+    padding: 16px;
+}
+
+/* Стили для параграфов внутри контента ценных бумаг */
+.mat-card.securities mat-card-content p {
+    margin-bottom: 10px;
+}
+
+/* Стили для кнопок внутри контента ценных бумаг */
+.mat-card.securities mat-card-content button {
+    margin-top: 10px;
+}
+

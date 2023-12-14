@@ -3,8 +3,15 @@
     width: 40%;
 }
 
+mat-card-title {
+    margin: 20px;
+    font-size: 32px;
+}
+
+
 mat-card {
     height: 90%;
+    margin: 20px;
 }
 
 .chart {
@@ -13,4 +20,41 @@ mat-card {
 
 mat-card-content {
     display: flex;
+    margin: 20px;
+}
+
+/* your-component.component.css */
+.mat-card {
+    width: 400px; /* Установите ширину карточки в соответствии с вашим дизайном */
+    margin: 20px;
+}
+
+.mat-card-header {
+    background-color: #2196F3; /* Цвет фона заголовка, замените на свой */
+    color: #ffffff; /* Цвет текста заголовка, замените на свой */
+}
+
+.mat-card-content {
+    padding: 16px;
+}
+
+.mat-grid-tile-content {
+    margin-bottom: 20px;
+}
+
+.chart {
+    margin-top: 20px;
+    height: 400px;
+    cursor: pointer; /* Добавляет подчеркивание при наведении курсора на текст */
+}
+
+/* Стили для canvas (графика) */
+canvas {
+    width: 100%;
+    height: 200px; /* Установите высоту графика в соответствии с вашим дизайном */
+}
+
+mat-icon {
+    height: 20px;
+    color: black;
 }

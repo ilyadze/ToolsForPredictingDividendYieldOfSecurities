@@ -1,0 +1,42 @@
+/* Добавьте следующие стили в ваш стилевой файл */
+
+/* Стили для mat-card */
+mat-card {
+    margin: 20px;
+    max-width: 400px; /* Пример ширины карточки, замените на свой */
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для заголовка карточки */
+mat-card-header {
+    background-color: #2196F3; /* Цвет фона заголовка, замените на свой */
+    color: #ffffff; /* Цвет текста заголовка, замените на свой */
+}
+
+/* Стили для заголовка и подзаголовка внутри mat-card-header */
+mat-card-header mat-card-title,
+mat-card-header mat-card-subtitle {
+    padding: 8px;
+}
+
+/* Стили для контента внутри карточки */
+mat-card-content {
+    padding: 16px;
+}
+
+/* Стили для параграфов внутри контента */
+mat-card-content p {
+    margin-bottom: 10px;
+}
+
+/* Стили для пагинатора */
+mat-paginator {
+    margin-top: 20px;
+}
+
+.news-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}

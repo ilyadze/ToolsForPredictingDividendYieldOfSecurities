@@ -22,6 +22,7 @@ import {ChartPricesComponent} from "./components/chart-prices/chart-prices.compo
 import {MatNativeDateModule} from "@angular/material/core";
 import {ActivationComponent} from "./components/activation/activation.component";
 import {FilterComponent} from "./components/filter/filter.component";
+import {DividendsComponent} from "./components/dividends/dividends.component";
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {FilterComponent} from "./components/filter/filter.component";
     WalletComponent,
     ChartPricesComponent,
     ActivationComponent,
-    FilterComponent
+    FilterComponent,
+    DividendsComponent
   ],
   imports: [
     BrowserModule,

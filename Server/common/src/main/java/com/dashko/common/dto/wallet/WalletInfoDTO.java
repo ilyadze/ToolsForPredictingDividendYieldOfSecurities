@@ -25,5 +25,5 @@ public class WalletInfoDTO {
 
     Integer totalSecurities;
 
-
+    String currency;
 }

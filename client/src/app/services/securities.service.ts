@@ -57,6 +57,7 @@ export class SecuritiesService {
         '&to='+ this.formatDate(to));
   }
 
+
   private formatDate(date: Date): string {
     // Пример форматирования даты в строку "YYYY-MM-DD"
     const year = date.getFullYear();

@@ -5,6 +5,8 @@ import {WalletSecurityGetDTO} from "../models/wallet/WalletSecurityGetDTO";
 import {formatDate} from "@angular/common";
 import {WalletInfoDTO} from "../models/wallet/WalletInfoDTO";
 import {Filters} from "../models/securities/Filters";
+import {Observable} from "rxjs";
+import {SecurityDividendGetDTO} from "../models/charts/SecurityDividendGetDTO";
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +26,10 @@ export class WalletService {
 
   getWalletInfo() {
     return this.httpClient.get<WalletInfoDTO>(this.base_url + localStorage.getItem('email') + '/securities/wallet');
+  }
+
+  getSecuritiesDividends(symbol:string): Observable<SecurityDividendGetDTO[]> {
+    return this.httpClient.get<SecurityDividendGetDTO[]>(this.base_url + localStorage.getItem('email') + '/securities/dividends');
   }
 
   addSecurities(securities: WalletSecuritiesAddDTO) {

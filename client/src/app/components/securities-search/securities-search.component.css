@@ -1,0 +1,29 @@
+/* search.component.css */
+mat-form-field {
+    width: 100%;
+    max-width: 800px; /* Пример ширины, установите подходящее значение */
+    margin: 0 auto;
+}
+
+input {
+    width: 100%;
+}
+
+/* mat-autocomplete styles */
+mat-autocomplete {
+    width: 100%;
+    max-height: 200px; /* Пример высоты выпадающего списка, установите подходящее значение */
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+mat-option {
+    padding: 8px;
+    cursor: pointer;
+}
+
+mat-option:hover {
+    background-color: #eee;
+}
+

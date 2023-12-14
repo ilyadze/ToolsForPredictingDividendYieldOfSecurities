@@ -23,7 +23,9 @@ public class CurrenciesApiClient {
     final RestTemplate restTemplate = new RestTemplate();
 
     public Double getCurrencies(String fromCurrency, String toCurrency) {
-
+        if (fromCurrency.equals(toCurrency)) {
+            return 1.0;
+        }
         return Objects.requireNonNull(restTemplate.exchange(URL
                                 + TOKEN + "/latest/" + fromCurrency,
                         HttpMethod.GET,

@@ -1,17 +1,18 @@
-<mat-card *ngFor="let oneNews of news">
-    <mat-card-header>
-        <mat-card-title>{{oneNews.title}}</mat-card-title>
-        <mat-card-subtitle>{{oneNews.author}}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-        <!-- Выведите другие свойства вашего объекта SecuritiesGetDTO -->
-        <p [innerHTML]="oneNews.content"></p>
-        <p>{{ oneNews.date }}</p>
-        <p>{{ oneNews.tickers }}</p>
-        <!-- ... -->
-    </mat-card-content>
-</mat-card>
-
+<div class="news-container">
+    <mat-card *ngFor="let oneNews of news">
+        <mat-card-header>
+            <mat-card-title>{{oneNews.title}}</mat-card-title>
+            <mat-card-subtitle>{{oneNews.author}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <!-- Выведите другие свойства вашего объекта SecuritiesGetDTO -->
+            <p [innerHTML]="oneNews.content"></p>
+            <p>{{ oneNews.date }}</p>
+            <p>{{ oneNews.tickers }}</p>
+            <!-- ... -->
+        </mat-card-content>
+    </mat-card>
+</div>
 <mat-paginator #paginator
                (page)="handlePageEvent($event)"
                [length]="length"
