@@ -9,4 +9,6 @@ import java.util.Optional;
 @Repository
 public interface PurchaseRepository extends JpaRepository<SecurityPurchase, Long> {
     Optional<SecurityPurchase> findBySecurityId(Long id);
+
+    Optional<SecurityPurchase> findBySecuritySymbol(String symbol);
 }

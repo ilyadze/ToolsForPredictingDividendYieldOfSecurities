@@ -24,8 +24,8 @@ export class WalletService {
     return this.httpClient.delete(this.base_url + localStorage.getItem('email') + '/securities/' + symbol);
   }
 
-  getWalletInfo() {
-    return this.httpClient.get<WalletInfoDTO>(this.base_url + localStorage.getItem('email') + '/securities/wallet');
+  getWalletInfo(currency: string) {
+    return this.httpClient.get<WalletInfoDTO>(this.base_url + localStorage.getItem('email') + '/securities/wallet?currency='+currency);
   }
 
   getSecuritiesDividends(symbol:string): Observable<SecurityDividendGetDTO[]> {

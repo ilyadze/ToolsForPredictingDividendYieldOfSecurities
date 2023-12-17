@@ -18,7 +18,8 @@ export class WalletComponent implements OnInit{
   length: number;
   securities: WalletSecurityGetDTO[];
   walletInfo: WalletInfoDTO;
-  currencies = new FormControl([]);
+  // currencies = new FormControl([]);
+  currency: string;
   @ViewChild('myChart') myChart!: ElementRef;
   chart: Chart;
 
@@ -31,7 +32,7 @@ export class WalletComponent implements OnInit{
     this.walletService.getSecurities().subscribe(result => {
       this.securities = result;
     });
-    this.walletService.getWalletInfo().subscribe(result => {
+    this.walletService.getWalletInfo("USD").subscribe(result => {
       this.walletInfo = result;
     });
     // this.httpClientService.getSecuritiesPrices(this.someData, this.startDate, this.endDate, this.selectedTimeRange).subscribe(result => {

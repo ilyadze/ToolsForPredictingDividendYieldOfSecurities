@@ -44,22 +44,24 @@ public class SecuritiesService implements ISecuritiesService {
 
             securityRepository.save(security);
         }
-        Optional<SecurityPurchase> purchase = purchaseRepository.findBySecurityId(existingSecurity.get().getId());
-        if(purchase.isPresent() & purchase.get().getPurchaseDate().equals(newSecutiry.getDateOfPurchase())) {
-            SecurityPurchase updatePurchase = purchase.get();
-            updatePurchase.setSecurity(securityRepository.findByPersonIdAndSymbol(personId, newSecutiry.getSymbol()).get());
-            updatePurchase.setPurchaseDate(newSecutiry.getDateOfPurchase());
-            updatePurchase.setQuantity(newSecutiry.getQuantity() + updatePurchase.getQuantity());
-            updatePurchase.setPurchasePrice(newSecutiry.getPrice());
-            purchaseRepository.save(updatePurchase);
-        } else {
-            SecurityPurchase newPurchase = new SecurityPurchase();
-            newPurchase.setSecurity(securityRepository.findByPersonIdAndSymbol(personId, newSecutiry.getSymbol()).get());
-            newPurchase.setPurchaseDate(newSecutiry.getDateOfPurchase());
-            newPurchase.setQuantity(newSecutiry.getQuantity());
-            newPurchase.setPurchasePrice(newSecutiry.getPrice());
-            purchaseRepository.save(newPurchase);
+        Optional<SecurityPurchase> purchase = purchaseRepository.findBySecuritySymbol(newSecutiry.getSymbol());
+        if(purchase.isPresent() ) {
+            if (purchase.get().getPurchaseDate().equals(newSecutiry.getDateOfPurchase())) {
+                SecurityPurchase updatePurchase = purchase.get();
+                updatePurchase.setSecurity(securityRepository.findByPersonIdAndSymbol(personId, newSecutiry.getSymbol()).get());
+                updatePurchase.setPurchaseDate(newSecutiry.getDateOfPurchase());
+                updatePurchase.setQuantity(newSecutiry.getQuantity() + updatePurchase.getQuantity());
+                updatePurchase.setPurchasePrice(newSecutiry.getPrice());
+                purchaseRepository.save(updatePurchase);
+            }
         }
+        SecurityPurchase newPurchase = new SecurityPurchase();
+        newPurchase.setSecurity(securityRepository.findByPersonIdAndSymbol(personId, newSecutiry.getSymbol()).get());
+        newPurchase.setPurchaseDate(newSecutiry.getDateOfPurchase());
+        newPurchase.setQuantity(newSecutiry.getQuantity());
+        newPurchase.setPurchasePrice(newSecutiry.getPrice());
+        purchaseRepository.save(newPurchase);
+
 
     }
 

@@ -22,6 +22,8 @@ import org.springframework.web.bind.annotation.*;
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -76,12 +78,19 @@ public class WalletController {
 
         String formattedDate = currentDate.format(formatter);
         List<Security> securities = securityService.getPersonSecurities(personId);
-//                .stream().map(security -> getMapper.map(security)).toList();
-        return ResponseEntity.ok(apiClient.getDividends(securities.get(0).getSymbol(), purchaseService.getPurchase(securities.get(0).getId()).getPurchaseDate(), formattedDate).getDividends());
+        List<DividendsValueGetDTO> allDividends = new ArrayList<>();
+
+        for (Security security : securities) {
+            List<DividendsValueGetDTO> securityDividends =apiClient.getDividends(security.getSymbol(), purchaseService.getPurchase(security.getId()).getPurchaseDate(), formattedDate).getDividends();
+            allDividends.addAll(securityDividends);
+        }
+
+
+        return ResponseEntity.ok(allDividends.stream().sorted(Comparator.comparing(DividendsValueGetDTO::getDate)).toList());
     }
 
     @GetMapping("/wallet")
-    public ResponseEntity<WalletInfoDTO> getPersonSecuritiesWallet(@PathVariable String email) {
+    public ResponseEntity<WalletInfoDTO> getPersonSecuritiesWallet(@PathVariable String email, @RequestParam("currency") String currency) {
         Long personId = personService.getPersonByEmail(email).getId();
         List<WalletSecurityGetDTO> securities = securityService.getPersonSecurities(personId)
                 .stream().map(security -> getMapper.map(security)).toList();
@@ -90,18 +99,18 @@ public class WalletController {
         });
         WalletInfoDTO walletInfoDTO = new WalletInfoDTO();
         Double actualPrice = securities.stream().mapToDouble(security -> {
-            double currenciesValue = currenciesApiClient.getCurrencies(security.getCurrency(), "USD");
+            double currenciesValue = currenciesApiClient.getCurrencies(security.getCurrency(), currency);
             return security.getActualPrice()*security.getTotalQuantity()*currenciesValue;
         }).sum();
         Double fullPrice = securities.stream().mapToDouble(security -> {
-            double currenciesValue = currenciesApiClient.getCurrencies(security.getCurrency(), "USD");
+            double currenciesValue = currenciesApiClient.getCurrencies(security.getCurrency(), currency);
             return security.getTotalPrice()*currenciesValue;
         }).sum();
         return ResponseEntity.ok(walletInfoDTO.builder()
                         .actualPrice(actualPrice)
                         .fullPrice(fullPrice)
                         .priceChange((fullPrice - actualPrice)*100/fullPrice)
-                        .currency("USD")
+                        .currency(currency)
                         .totalSecurities(securities.size())
                 .build());
     }
